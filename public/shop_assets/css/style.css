@@ -16894,7 +16894,7 @@ img.emoji {
 }
 
 .inner-main-title {
-    background-image: url(https://thanhandress.com/wp-content/themes/thoitrang/assets/img/startup-slider.jpg);
+    background-image: url("../images/startup-slider.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;

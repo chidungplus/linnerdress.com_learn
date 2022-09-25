@@ -24,14 +24,14 @@
     <meta property="og:site_name" content="Linner Dress">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" href="https://thanhandress.com/wp-content/uploads/2019/01/thanh-an-dress-icon-150x150.png"
+    <link rel="icon" href="/shop_assets/images/icon_150x150.png"
         sizes="32x32">
-    <link rel="icon" href="https://thanhandress.com/wp-content/uploads/2019/01/thanh-an-dress-icon-300x300.png"
+    <link rel="icon" href="/shop_assets/images/icon_300x300.png"
         sizes="192x192">
     <link rel="apple-touch-icon"
-        href="https://thanhandress.com/wp-content/uploads/2019/01/thanh-an-dress-icon-300x300.png">
+        href="/shop_assets/images/icon_300x300.png">
     <meta name="msapplication-TileImage"
-        content="https://thanhandress.com/wp-content/uploads/2019/01/thanh-an-dress-icon-300x300.png">
+        content="https://linnerdress.com/shop_assets/images/icon_300x300.png">
     {{-- Css --}}
     <link rel="stylesheet" href="/shop_assets/css/style.css">
     {{-- Js --}}
@@ -169,10 +169,10 @@
                                 <strong>Thanh An Dres</strong>s nhé:</span></li>
                     </ul>
                     <p>&nbsp;</p>
-                    <p style="text-align: center;"><strong>KẾT NỐI VỚI CHÚNG TÔI&nbsp;<img loading="lazy"
+                    <a href="https://facebook.com/linnerdress"> <p style="text-align: center;"><strong>KẾT NỐI VỚI CHÚNG TÔI&nbsp;<img loading="lazy"
                                 class="alignnone wp-image-333 size-full lazyloading"
                                 src="/shop_assets/images/fb.png" alt="" width="175"
-                                height="30" data-was-processed="true"></strong></p>
+                                height="30" data-was-processed="true"></strong></p></a>
                 </div>
             </div>
             <div class="footer">
@@ -205,8 +205,8 @@
             </div>
         </footer>
         <div class="hotline_fixed">
-            <a class="icon" href="tel:0932221293" title="Click gọi điện liên hệ tư vấn ngay!!!"></a>
-            <a class="phone_number" href="tel:0932221293" title="Click gọi điện liên hệ tư vấn ngay!!!">0932.221.293</a>
+            <a class="icon" href="tel:0353032222" title="Click gọi điện liên hệ tư vấn ngay!!!"></a>
+            <a class="phone_number" href="tel:0353032222" title="Click gọi điện liên hệ tư vấn ngay!!!">035.303.2222</a>
         </div>
     </div>
     <script type="text/javascript">
