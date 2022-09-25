@@ -1,0 +1,9 @@
+Admin
+	
+	main-header
+	main-sidebar
+
+	content-wrapper
+
+	main-footer
+	control-sidebar
