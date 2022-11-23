@@ -1,0 +1,50 @@
+@media screen and (max-width: 768px){
+    .product-single__button .btn {
+        height: 40px;
+    }
+}
+@media (max-width: 991px){
+    .site-wrapper {
+        padding-top: 80px;
+    }
+    .product-header__options .option-heading__title, .product-single__options .option-heading__title {
+        font-size: 12px;
+    }
+    .product-header__options .option-select__item, .product-single__options .option-select__item {
+        padding: 4px;
+    }
+    .product-header__options .option-select, .product-single__options .option-select {
+        margin-left: -4px;
+        margin-right: -4px;
+    }
+    .product-header__options .option-select__item .checkmark, .product-single__options .option-select__item .checkmark {
+        height: 30px;
+        border-radius: 12px;
+    }
+    .product-single__actions {
+        padding-top: 12px;
+        padding-bottom: 17px;
+    }
+    .quantity {
+        height: 30px;
+        border-radius: 12px;
+    }
+
+    .product-single__button {
+        padding-left: 9px;
+    }
+    .btn {
+        font-size: 12px;
+        padding: 0 16px;
+        height: 30px;
+        border-radius: 12px;
+    }
+    .product-single__option.is-error {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .product-single__option.is-error:after {
+        left: 0;
+        width: 100%;
+    }
+}

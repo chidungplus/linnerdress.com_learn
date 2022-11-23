@@ -1,56 +1,49 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
-
 require('./bootstrap');
 
 window.Vue = require('vue');
 Vue.config.productionTip = false;
 Vue.config.devtools = true;
 
-// Add vue router
-import VueRouter from 'vue-router'
+import Front from './Front';
+import AddToCart from './components/front/addToCart';
 
-import Paginate from 'vuejs-paginate'
-Vue.component('paginate', Paginate)
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import routes from './routes';
+import store from './store';
 
-Vue.component('admin-component', require('./components/admin/index.vue').default);
+// use router
+Vue.use(VueRouter);
 
-Vue.use(VueRouter)
-import Dashboard 	from './components/admin/dashboard/index.vue'
-import UserList 	from './components/admin/user/list.vue'
-import AccList 		from './components/admin/acc/list.vue'
-import AccCreate 	from './components/admin/acc/create.vue'
+Vue.filter('toCurrency', function (value) {
+    if (typeof value !== "number") {
+        return value;
+    }
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+    return formatter.format(value);
+});
 
-const routes = [
-	{ 	path: '/vue/admin', 
-		name: 'Dashboard', 
-		component: Dashboard 
-	},
-	{ 
-		path: '/vue/admin/user',
-		name: 'UserList',
-		component: UserList 
-	},
-	{
-		path: '/vue/admin/acc',
-		name: 'AccList',
-		component: AccList
-	},
-	{
-		path: '/vue/admin/acc/create', 
-		name: 'AccCreate', 
-		component: AccCreate 
-	},
-]
-  
+// khai báo dùng router này
 const router = new VueRouter({
-	mode: 'history',
-  	routes 
-})
-  
-const app = new Vue({
-  router
-}).$mount('#app')
+    routes,
+    mode: 'history'
+});
+
+// và cuối cùng là tạo 1 instance Vue và render tại phần tử có id là app,
+// render tại component App và dùng router đã khai báo ở trên
+// const app = new Vue({
+//     el: '#app',
+//     store,
+//     render: h => h(Front),
+//     router
+// });
+
+const addToCart = new Vue({
+    el: '.product-single__addtocart',
+    store,
+    render: h => h(AddToCart),
+    router
+});

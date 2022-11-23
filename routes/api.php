@@ -17,14 +17,13 @@ use Illuminate\Http\Request;
 
 Route::namespace('Api')->group(function () {
 
-    Route::namespace('Admin')->prefix('admin')->group(function () {
-        Route::post('/acc/store','AccController@store');
+    // Route::namespace('Admin')->prefix('admin')->group(function () {
 
-        Route::post('/acc/storeFromChildren','AccController@storeFromChildren');
+    // });
 
+    Route::namespace('Front')->group(function () {
+        Route::post('/cart','CartController@cart');
     });
-
-    Route::post('callback','CardController@callback');
 
 
 });

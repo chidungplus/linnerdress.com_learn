@@ -46,7 +46,6 @@ Route::middleware(['auth','admin'])->namespace('Admin')->prefix('admin')->group(
     });
     Route::resource('/product','ProductController');
 
-
     # Image
     Route::post('/image/thumbnail', 'ImageController@thumbnail');
     Route::post('/image/large', 'ImageController@large');
@@ -57,6 +56,7 @@ Route::middleware(['auth','admin'])->namespace('Admin')->prefix('admin')->group(
 #Fontend
 Route::namespace('Frontend')->group(function () {
     # HomeController
+    Route::get('/test', 'HomeController@test')->name('shop.test');
     Route::get('/', 'HomeController@index')->name('shop.home');
     Route::get('/getJS', 'HomeController@getJS');
     Route::get('/home', 'HomeController@index')->name('home');
@@ -66,6 +66,18 @@ Route::namespace('Frontend')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::get('user', 'UserController@profile')->name('front.user');
     });
+    // Route::get('/','CartController@cartVue');
+
+    Route::get('/cart','HomeController@vue');
+    Route::get('/payment','HomeController@vue');
+    // Route::post('/cart/payment','CartController@payment');
+    // Route::post('/cart/payment/cart-bottom','CartController@cartBottom');
+
+    Route::post('/cart','CartController@addToCart');
+    Route::post('/count-cart','CartController@count');
+    Route::post('/update-cart','CartController@updateCart');
+    Route::post('/destroy-cart','CartController@destroyCart');
+
 
     Route::get('/san-pham/{permalink}','ProductController@single');
     Route::get('/danh-muc/{permalink}','CategoryController@single');

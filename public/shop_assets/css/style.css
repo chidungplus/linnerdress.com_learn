@@ -2209,10 +2209,6 @@ textarea {
     line-height: inherit
 }
 
-a {
-    color: #337ab7;
-    text-decoration: none
-}
 
 a:focus,
 a:hover {
@@ -4678,13 +4674,13 @@ textarea.input-lg {
     text-decoration: none
 }
 
-.btn.active,
+/* .btn.active,
 .btn:active {
     background-image: none;
     outline: 0;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
     box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125)
-}
+} */
 
 .btn.disabled,
 .btn[disabled],
@@ -11851,10 +11847,7 @@ template {
     display: none
 }
 
-a {
-    background: transparent;
-    color: #007acc
-}
+
 
 a:hover,
 a:active,
@@ -13503,7 +13496,8 @@ object {
 #primary {
     float: left;
     display: block;
-    margin-bottom: 50px
+    margin-bottom: 50px;    
+    margin-left: 0;
 }
 
 .secondary-sidebar {
@@ -13517,6 +13511,10 @@ object {
 
     .inner-main-title {
         margin-bottom: 30px
+    }
+    
+    .info-sp{
+        margin-top: 10px;
     }
 
     #primary,
@@ -15243,7 +15241,7 @@ button.dangky {
 .top-header-tp {
     background: #333;
     color: #FFF;
-    line-height: 42px
+    line-height: 30px
 }
 
 .top-left {
@@ -15404,7 +15402,7 @@ p#breadcrumbs {
 h1.entry-title {
     margin: 0 0 35px;
     position: relative;
-    font-size: 17px;
+    font-size: 21px;
     line-height: 28px;
     text-transform: uppercase
 }
@@ -15719,7 +15717,7 @@ p.hotline_2 span {
 .gia_mua_ban .gia {
     float: left;
     width: 50%;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700
 }
 
@@ -15739,6 +15737,8 @@ p.hotline_2 span {
 .gia_mua_ban .gia.gia_ban {
     color: #e3a95d
 }
+
+
 
 .mo_ta_ngan {
     margin-bottom: 35px
@@ -15853,13 +15853,22 @@ ul.menu_list li:hover a {
     color: #FFF
 }
 
-.hotline_fixed {
+/* .hotline_fixed {
     position: fixed;
     bottom: 15px;
     left: 15px;
     z-index: 9999;
     width: 50px;
     height: 50px;
+    background: rgba(242, 59, 121, .2);
+    padding: 5px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%
+} */
+.hotline_fixed {
+    width: 35px;
+    height: 35px;
     background: rgba(242, 59, 121, .2);
     padding: 5px;
     -webkit-border-radius: 50%;
@@ -15885,6 +15894,7 @@ ul.menu_list li:hover a {
     -moz-animation: cssAnimation 1s infinite alternate ease;
     -o-animation: cssAnimation 1s infinite alternate ease
 }
+
 
 .hotline_fixed::after {
     content: "";
@@ -15917,6 +15927,51 @@ ul.menu_list li:hover a {
     z-index: 102;
     animation: 1s ease-in-out 0s normal none infinite running quick-alo-circle-img-anim
 }
+
+.cd-footer{
+    background: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+}
+.cd-footer .mobile-col{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.hotline{
+    position: relative;
+    width: 42px;
+    height: 42px;
+    display: block;
+    justify-content: center;
+    /* z-index: 100; */
+    top: 5px;
+    left: 5px;
+}
+.add-to-cart{
+    display: flex;
+    /* width: 50%; */
+    align-items: center;
+    width: 150px;
+    /* float: left; */
+    height: 40px;
+    /* align-content: center; */
+    margin-left: 10px;
+    background: #ecb977;
+    line-height: 40px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    /* text-align: center; */
+    justify-content: center;
+}
+
+
 
 @-webkit-keyframes cssAnimation {
     from {
@@ -16651,11 +16706,6 @@ p.xem_them_anh {
     text-align: center
 }
 
-.quantity {
-    width: 70px;
-    float: left;
-    height: 40px
-}
 
 .button_mua.mua_ngay,
 .them_vao_gio {
@@ -16687,7 +16737,7 @@ p.xem_them_anh {
 }
 
 .them_vao_gio {
-    background: #bcbcbc
+    /* background: #bcbcbc */
 }
 
 .them_vao_gio input.wspsc_add_cart_submit {
@@ -16704,7 +16754,8 @@ p.xem_them_anh {
     height: 40px;
     line-height: 40px;
     padding-right: 0;
-    border: 1px solid #DDD
+    border: 1px solid #DDD;
+    width: 50px;
 }
 
 .button_mua.mua_ngay:hover,
@@ -16988,4 +17039,16 @@ span.gach-ngang {
 
 .entry img{
     margin-top: 10px;
+}
+
+
+@media (max-width:768px) {
+
+    .sa-hdfix-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+    }
 }

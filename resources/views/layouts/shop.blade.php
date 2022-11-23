@@ -6,7 +6,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="profile" href="https://gmpg.org/xfn/11">
-    {{-- <link rel="pingback" href="https://linnerdress.com/xmlrpc.php"> --}}
+    {{--
+    <link rel="pingback" href="https://linnerdress.com/xmlrpc.php"> --}}
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <title>Linner Dress - Bán Váy Dạ Hội Cao Cấp</title>
     <link rel="stylesheet"
@@ -24,191 +25,327 @@
     <meta property="og:site_name" content="Linner Dress">
     <meta name="twitter:card" content="summary_large_image">
 
-    <link rel="icon" href="/shop_assets/images/icon_150x150.png"
-        sizes="32x32">
-    <link rel="icon" href="/shop_assets/images/icon_300x300.png"
-        sizes="192x192">
-    <link rel="apple-touch-icon"
-        href="/shop_assets/images/icon_300x300.png">
-    <meta name="msapplication-TileImage"
-        content="https://linnerdress.com/shop_assets/images/icon_300x300.png">
+    <link rel="icon" href="/shop_assets/images/icon_150x150.png" sizes="32x32">
+    <link rel="icon" href="/shop_assets/images/icon_300x300.png" sizes="192x192">
+    <link rel="apple-touch-icon" href="/shop_assets/images/icon_300x300.png">
+    <meta name="msapplication-TileImage" content="https://linnerdress.com/shop_assets/images/icon_300x300.png">
     {{-- Css --}}
+    <link rel="stylesheet" href="/shop_assets/css/menu.css">
+    <link rel="stylesheet" href="/shop_assets/vendors/toastr/toastr.css">
+    <link rel="stylesheet" href="/shop_assets/vendors/sweetalert2/sweetalert2.min.css">
     <link rel="stylesheet" href="/shop_assets/css/style.css">
+    <link rel="stylesheet" href="/shop_assets/css/coolmate.css">
+    <link rel="stylesheet" href="/shop_assets/css/coolmate-mobile.css">
     {{-- Js --}}
     <script src="/shop_assets/vendors/jquery/jquery-3.4.1.min.js"></script>
     <script src="/shop_assets/vendors/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="/shop_assets/vendors/toastr/toastr.min.js"></script>
+    <script src="/shop_assets/vendors/sweetalert2/sweetalert2.min.js"></script>
+
+    <script src="/shop_assets/js/functions.js"></script>
 </head>
 
-<body data-rsssl="1" class="home blog wp-custom-logo right-sidebar hfeed">
-    <div class="top-header-tp">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-8">
-                    <div class="top-left"> Chào mừng bạn đến với <span>Linner Dress</span></div>
-                </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="top-right"> Hotline: <span><a href="tel:035.303.222">035.303.222</a></span>
-                        {{-- <br> Showroom: <span>Số 39 Ngõ 165 Thái Hà, Đống Đa, Hà Nội</span> --}}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="site" id="page"> <a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-        <div class="navbar at-navbar" id="navbar" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><i
-                            class="fa fa-bars"></i>
-                    </button>
-                    <a href="/" class="custom-logo-link" rel="home" aria-current="page"><img width="176" height="80"
-                            src="/shop_assets/images/logo-linner-dress.png" class="custom-logo lazyloading"
-                            alt="Thanh An Dress" data-was-processed="true">
-                    </a>
-                    {{-- <div class="search-cart-user">
-                        <div class="searchs">
-                            <img src="https://fivegrains.vn/wp-content/uploads/2022/07/search.svg" alt="">
-                            <form role="search" method="get" class="woocommerce-product-search"
-                                action="https://fivegrains.vn/">
-                                <label class="screen-reader-text" for="woocommerce-product-search-field-1">Tìm
-                                    kiếm:</label>
-                                <input type="search" id="woocommerce-product-search-field-1" class="search-field"
-                                    placeholder="Tìm sản phẩm…" value="" name="s">
-                                <button type="submit" value="">
-                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/search.svg" alt="">
-                                </button>
-                                <input type="hidden" name="post_type" value="product">
-                            </form>
-                        </div>
-                        <div class="carts-ajax">
-                            <a class="carts-item" href="https://fivegrains.vn/gio-hang/">
-                                <div class="img">
-                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/stroke.svg" alt="">
-                                </div>
-                                <span class="number-cart">
-                                    +0 </span>
-                            </a>
-                        </div>
-                        <div class="user">
-                            <a href="https://fivegrains.vn/tai-khoan/edit-account/">
-                                <img class="no-login avatar-user"
-                                    src="https://fivegrains.vn/wp-content/uploads/2022/07/user.svg" alt="">
-                            </a>
-                        </div>
-                    </div> --}}
-                </div>
-                <div class="main-navigation navbar-collapse collapse">
-                    <div class="menu-main-menu-container">
-                        <ul id="primary-menu" class="nav navbar-nav navbar-right acme-normal-page">
-                            <li id="menu-item-272"
-                                class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-272">
-                                <a href="/" aria-current="page">Trang chủ</a>
-                            </li>
-                            <li id="menu-item-317"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-317"><a
-                                    href="/danh-muc/vay-da-hoi-dai/">Váy dạ hội dài</a>
-                            </li>
-                            <li id="menu-item-318"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-318"><a
-                                    href="/danh-muc/vay-da-hoi-duoi-ca/">Váy dạ hội
-                                    đuôi cá</a></li>
-                            <li id="menu-item-319"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-319"><a
-                                    href="/danh-muc/vay-da-hoi-mullet/">Váy dạ hội
-                                    Mullet</a></li>
-                            <li id="menu-item-320"
-                                class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-320"><a
-                                    href="/danh-muc/vay-da-hoi-ngan/">Váy dạ hội
-                                    ngắn</a></li>
-                            <li id="menu-item-274"
-                                class="menu-item menu-item-type-post_type menu-item-object-page menu-item-274"><a
-                                    href="/lien-he/">Liên hệ</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {{-- <div class="container">
-            <div class="nivo-image-slider">
-                <div class="slider-wrapper theme-smooth">
-                    <div id="ID-100" class="nivoSlider"> <img
-                            src="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan.jpg" width="1140"
-                            height="487"
-                            data-thumb="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan-150x150.jpg"
-                            title=""><img
-                            src="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan_02.jpg" width="1140"
-                            height="487"
-                            data-thumb="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan_02-150x150.jpg"
-                            title=""><img
-                            src="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan_03.jpg" width="1140"
-                            height="487"
-                            data-thumb="https://thanhandress.com/wp-content/uploads/2018/04/slider_thanhan_03-150x150.jpg"
-                            title=""></div>
-                </div>
-            </div>
-        </div> --}}
-
-        @yield('content')
-
-        <footer>
-            <div class="site-footer">
-                <div class="container">
-                    <p><img loading="lazy" class="aligncenter size-full wp-image-322 lazyloading"
-                            src="/shop_assets/images/logo-linner-dress.png" alt="" width="176" height="80"
-                            data-was-processed="true"></p>
-                    <ul>
-                        <li><span style="color: #000000;">Chào mừng bạn đến với <strong>Thanh An Dress</strong>, hãy để
-                                chúng tôi giúp bạn tỏa sáng và nổi bật trong những bữa tiệc.</span></li>
-                        <li><span style="color: #000000;"><strong>Thanh An Dress</strong> chuyên cung cấp những mẫu
-                                <em>Váy Dạ Hộ</em>i sang chảnh và độc đáo nhất. Bạn có thể thuê hoặc mua với giá rất ưu
-                                đãi, hợp với túi tiền tất cả mọi người.</span></li>
-                        <li><span style="color: #000000;">Với số lượng váy dạ hội khá nhiều và đa dạng, khách hàng thoải
-                                mái lựa chọn, cùng những bộ phụ kiện đi kèm sẽ tạo cho bạn sự hoàn hảo tối đa.</span>
-                        </li>
-                        <li><span style="color: #000000;">Bạn có thể xem qua những feeback khách hàng đã sử dụng của
-                                <strong>Thanh An Dres</strong>s nhé:</span></li>
-                    </ul>
-                    <p>&nbsp;</p>
-                    <a href="https://facebook.com/linnerdress"> <p style="text-align: center;"><strong>KẾT NỐI VỚI CHÚNG TÔI&nbsp;<img loading="lazy"
-                                class="alignnone wp-image-333 size-full lazyloading"
-                                src="/shop_assets/images/fb.png" alt="" width="175"
-                                height="30" data-was-processed="true"></strong></p></a>
-                </div>
-            </div>
-            <div class="footer">
-                <div class="container">
-                    <div class="footer-2">
+<body class="">
+    <div id="app">
+        <div id="site-wrapper" class="site-wrapper has-topbar">
+            <header class="site-header">
+                <section class="top-header-tp">
+                    <div class="container">
                         <div class="row">
-                            <div class="col-xs-12 col-sm-4 footer-2-a"> <label>Liên hệ Linner Dress</label> <i
-                                    class="fa fa-phone-square"></i> Hotline: <span><a
-                                        href="tel:035.303.2222">035.303.2222</a></span></div>
-                            <div class="col-xs-12 col-sm-4 footer-2-b"> <i class="fa fa-map-marker"></i> Địa chỉ:
-                                <span>Số 39, Ngõ 165 Thái Hà, Đống Đa, Hà Nội.</span>
+                            <div class="col-xs-12 col-sm-8">
+                                <div class="top-left"> Chào mừng bạn đến với <span>Linner Dress</span></div>
                             </div>
-                            <div class="col-xs-12 col-sm-4 footer-2-c">
-                                <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-336" method="post" data-id="336"
-                                    data-name="Đăng ký nhận tin">
-                                    <div class="mc4wp-form-fields"> <input type="email" name="EMAIL"
-                                            placeholder="Đăng ký E-mail nhận bản tin" required=""> <input type="submit"
-                                            value="Gửi E-mail"></div><label style="display: none !important;">Leave this
-                                        field empty if you're human: <input type="text" name="_mc4wp_honeypot" value=""
-                                            tabindex="-1" autocomplete="off"></label><input type="hidden"
-                                        name="_mc4wp_timestamp" value="1663640225"><input type="hidden"
-                                        name="_mc4wp_form_id" value="336"><input type="hidden"
-                                        name="_mc4wp_form_element_id" value="mc4wp-form-1">
-                                    <div class="mc4wp-response"></div>
-                                </form>
+                            {{-- <div class="col-xs-12 col-sm-4">
+                                <div class="top-right"> Hotline: <span><a href="tel:035.303.222">035.303.222</a></span>
+                                </div>
+                            </div> --}}
+                        </div>
+                    </div>
+                </section>
+                <section id="menu-main" style="padding: 5px 15px">
+                    <div class="container pc">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="header">
+                                    <div class="left">
+                                        <div class="logo">
+                                            <a href="/">
+                                                <img src="https://linnerdress.com/shop_assets/images/logo-linner-dress.png"
+                                                    alt="">
+                                            </a>
+                                        </div>
+                                        <div class="menu-active">
+                                            <div class="menu-menu-main-container">
+                                                <ul id="menu-menu-main" class="menu">
+                                                    <li id="menu-item-16" class="menu-item active ">
+                                                        <a href="/" aria-current="page">Trang chủ</a>
+                                                    </li>
+                                                    <li id="menu-item-17" class="menu-item">
+                                                        <a href="/">Váy dạ hội dài</a>
+                                                    </li>
+                                                    <li id="menu-item-491" class="menu-item">
+                                                        <a href="/">Váy dạ hội đuôi cá</a>
+                                                    </li>
+                                                    <li id="menu-item-649" class="menu-item">
+                                                        <a href="/">Váy dạ hội Mullet</a>
+                                                    </li>
+                                                    <li id="menu-item-649" class="menu-item">
+                                                        <a href="/">Váy dạ hội ngắn</a>
+                                                    </li>
+                                                    <li id="menu-item-1062" class="menu-item">
+                                                        <a href="/">Giới thiệu</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        {{-- <div class="hotline">
+                                            <a class="phone_header" href="tel: ">
+                                                <img src="/wp-content/uploads/2022/07/phone.svg" alt="">
+                                                <p>035.303.2222</p>
+                                            </a>
+                                        </div> --}}
+                                        <div class="search-cart-user">
+                                            {{-- <div class="searchs">
+                                                <img src="/shop_assets/images/svg/search.svg" alt="">
+                                                <form role="search" method="get" class="">
+                                                    <label class="screen-reader-text"
+                                                        for="woocommerce-product-search-field-0">Tìm
+                                                        kiếm:</label>
+                                                    <input type="search" id="woocommerce-product-search-field-0"
+                                                        class="search-field" placeholder="Tìm sản phẩm&hellip;" value=""
+                                                        name="s" />
+                                                    <button type="submit" value="">
+                                                        <img src="/shop_assets/images/svg/search.svg" alt="">
+                                                    </button>
+                                                    <input type="hidden" name="post_type" value="product" />
+                                                </form>
+                                            </div> --}}
+                                            <div class="carts-ajax">
+                                                <a class="carts-item" href="/cart">
+                                                    <div class="img">
+                                                        <img src="/shop_assets/images/svg/stroke.svg" alt="">
+                                                    </div>
+                                                    <span class="number-cart">
+                                                        0
+                                                    </span>
+                                                </a>
+                                            </div>
+                                            <div class="user">
+                                                <a href="#">
+                                                    <img class="no-login avatar-user"
+                                                        src="/shop_assets/images/svg/user.svg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container mobile">
+                        <div class="row">
+                            <div class="col-12 mobile-col">
+                                <div class="menu-mobile">
+                                    <input type="checkbox" id="input-menu">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <div class="menu-bg">
+                                        <div class="menu-menu-main-container">
+                                            <ul class="menu">
+                                                <li class="menu-item active ">
+                                                    <a href="/" aria-current="page">Trang chủ</a>
+                                                </li>
+                                                <li class="menu-item"><a href="/">Váy dạ hội dài</a></li>
+                                                <li class="menu-item"><a href="/">Váy dạ hội đuôi cá</a></li>
+                                                <li class="menu-item"><a href="/">Váy dạ hội Mullet</a></li>
+                                                <li class="menu-item"><a href="/">Váy dạ hội ngắn</a></li>
+                                                <li class="menu-item"><a href="/">Giới thiệu</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="left-right">
+                                            <div class="left">
+                                                <a href="#">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/fb.svg"
+                                                        alt="">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/in.svg"
+                                                        alt="">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/twi.svg"
+                                                        alt="">
+                                                </a>
+                                                <a href="#">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/ins.svg"
+                                                        alt="">
+                                                </a>
+                                            </div>
+                                            <div class="right">
+                                                <a class="phone_header" href="tel: ">
+                                                    <img src="/shop_assets/images/svg/phone.svg" alt="">
+                                                    <p>035.303.2222</p>
+                                                </a>
+                                                <div class="time">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/stroke_cir.svg"
+                                                        alt="">
+                                                    <p>9:00 - 23:00</p>
+                                                </div>
+                                                <a class="email" href="mailto: hotro@fivegrains.vn">
+                                                    <img src="https://fivegrains.vn/wp-content/uploads/2022/07/solid_rec.svg"
+                                                        alt="">
+                                                    <p>linnerdress@gmail.com</p>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="logo">
+                                    <a href="/">
+                                        <img src="https://fivegrains.vn/wp-content/uploads/2022/07/Logo.webp" alt="">
+                                    </a>
+                                </div>
+                                <div class="search-cart-user">
+                                    {{-- <div class="searchs">
+                                        <img src="/shop_assets/images/svg/search.svg" alt="">
+                                        <form role="search" method="get" class="" action="#">
+                                            <label class="" for="">Tìm kiếm:</label>
+                                            <input type="search" id="" class="search-field" placeholder="Tìm sản phẩm "
+                                                value="" name="s" />
+                                            <button type="submit" value="">
+                                                <img src="/shop_assets/images/svg/search.svg" alt="">
+                                            </button>
+                                            <input type="hidden" name="post_type" value="product" />
+                                        </form>
+                                    </div> --}}
+                                    <div class="user">
+                                        <a href="#">
+                                            <img class="no-login avatar-user" src="/shop_assets/images/svg/user.svg"
+                                                alt="">
+                                        </a>
+                                    </div>
+                                    <div class="carts-ajax">
+                                        <a class="carts-item" href="/cart">
+                                            <div class="img">
+                                                <img src="/shop_assets/images/svg/stroke.svg" alt="">
+                                            </div>
+                                            <span class="number-cart">
+                                                0
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </header>
+
+            @yield('content')
+
+            <footer>
+                <div class="site-footer">
+                    <div class="container">
+                        <p><img loading="lazy" class="aligncenter size-full wp-image-322 lazyloading"
+                                src="/shop_assets/images/logo-linner-dress.png" alt="" width="176" height="80"
+                                data-was-processed="true"></p>
+                        <ul>
+                            <li><span style="color: #000000;">Chào mừng bạn đến với <strong>Linner Dress</strong>, hãy
+                                    để
+                                    chúng tôi giúp bạn tỏa sáng và nổi bật trong những bữa tiệc.</span></li>
+                            <li><span style="color: #000000;"><strong>Linner Dress</strong> chuyên cung cấp những mẫu
+                                    <em>Váy Dạ Hộ</em>i sang chảnh và độc đáo nhất. Bạn có thể thuê hoặc mua với giá rất
+                                    ưu
+                                    đãi, hợp với túi tiền tất cả mọi người.</span></li>
+                            <li><span style="color: #000000;">Với số lượng váy dạ hội khá nhiều và đa dạng, khách hàng
+                                    thoải
+                                    mái lựa chọn, cùng những bộ phụ kiện đi kèm sẽ tạo cho bạn sự hoàn hảo tối
+                                    đa.</span>
+                            </li>
+                            <li><span style="color: #000000;">Bạn có thể xem qua những feeback khách hàng đã sử dụng của
+                                    <strong>Linner Dress</strong>s nhé:</span></li>
+                        </ul>
+                        <p>&nbsp;</p>
+                        <a href="https://facebook.com/linnerdress">
+                            <p style="text-align: center;"><strong>KẾT NỐI VỚI CHÚNG TÔI&nbsp;<img loading="lazy"
+                                        class="alignnone wp-image-333 size-full lazyloading"
+                                        src="/shop_assets/images/fb.png" alt="" width="175" height="30"
+                                        data-was-processed="true"></strong></p>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="container">
+                        <div class="footer-2">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-4 footer-2-a"> <label>Liên hệ Linner Dress</label> <i
+                                        class="fa fa-phone-square"></i> Hotline: <span><a
+                                            href="tel:035.303.2222">035.303.2222</a></span></div>
+                                <div class="col-xs-12 col-sm-4 footer-2-b"> <i class="fa fa-map-marker"></i> Địa chỉ:
+                                    <span>Số 39, Ngõ 165 Thái Hà, Đống Đa, Hà Nội.</span>
+                                </div>
+                                <div class="col-xs-12 col-sm-4 footer-2-c">
+                                    <form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-336" method="post"
+                                        data-id="336" data-name="Đăng ký nhận tin">
+                                        <div class="mc4wp-form-fields"> <input type="email" name="EMAIL"
+                                                placeholder="Đăng ký E-mail nhận bản tin" required=""> <input
+                                                type="submit" value="Gửi E-mail"></div><label
+                                            style="display: none !important;">Leave this
+                                            field empty if you're human: <input type="text" name="_mc4wp_honeypot"
+                                                value="" tabindex="-1" autocomplete="off"></label><input type="hidden"
+                                            name="_mc4wp_timestamp" value="1663640225"><input type="hidden"
+                                            name="_mc4wp_form_id" value="336"><input type="hidden"
+                                            name="_mc4wp_form_element_id" value="mc4wp-form-1">
+                                        <div class="mc4wp-response"></div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-        <div class="hotline_fixed">
-            <a class="icon" href="tel:0353032222" title="Click gọi điện liên hệ tư vấn ngay!!!"></a>
-            <a class="phone_number" href="tel:0353032222" title="Click gọi điện liên hệ tư vấn ngay!!!">035.303.2222</a>
+
+            </footer>
         </div>
     </div>
+
+
+    <div class="notify">
+        <a class="notify__close">x</a>
+        <div class="notify__wrapper">
+            <div class="notify__content">
+                <h4 class="notify__message"></h4>
+                <div class="notify__product">
+                    <div class="notify-product">
+                        <div class="notify-product__thumbnail">
+                            <img src="https://media.coolmate.me/cdn-cgi/image/width=672,height=990,quality=80,format=auto/uploads/November2022/ao-thun-black-panther-wakanda4ever1.jpg"
+                                alt="
+        Áo thun Marvel Oversize Wakanda Forever
+        ">
+                        </div>
+                        <div class="notify-product__content">
+                            <span class="notify-product__title">
+                                Áo thun Marvel Oversize Wakanda Forever
+                            </span>
+                            <span class="notify-product__option">
+                                Tím / L
+                            </span>
+                            <span class="notify-product__prices">
+                                <ins>229.000đ</ins>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <a href="/cart" class="btn btn--small">Xem giỏ hàng</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ mix('/build/js/app.js') }}"></script>
+
     <script type="text/javascript">
         $.ajaxSetup({
             headers: {
@@ -241,6 +378,7 @@
             }
         });
     </script>
+    @yield("js")
 </body>
 
 </html>

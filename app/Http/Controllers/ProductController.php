@@ -42,7 +42,13 @@ class ProductController extends Controller
 	}
 
     public function getProduct($id){
-
+		try{
+            $product = Product::find($id);
+            return $product;
+        }catch (\Exception $e) {
+            Log::error($e);
+            return false;
+        }
     }
 
     public function getAdminId($id){
