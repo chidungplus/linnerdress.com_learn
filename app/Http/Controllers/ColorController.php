@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ColorController extends Controller
 {
-    public function getNameColorId($color_id){
+    public function getColorName($color_id){
         switch ($color_id) {
             case '0':
                 return "Chưa Phân Loại";

@@ -1,5 +1,5 @@
 const mix = require('laravel-mix');
-
+const path = require('path');
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -12,7 +12,8 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'build/js').sourceMaps()
-    .sass('resources/sass/app.scss', 'build/css').version();
+    .sass('resources/sass/app.scss', 'build/css')
+    .version();
 
 
 
@@ -33,3 +34,11 @@ mix.js('resources/js/app.js', 'build/js').sourceMaps()
 // mix.scripts([
 //      'public/admin_assets2/plugins/jquery/jquery.min.js',
 //  ], 'public/js/app.js');
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@pages': path.resolve(__dirname, 'resources/js/pages'),
+        }
+    }
+});

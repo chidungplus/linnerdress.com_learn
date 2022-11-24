@@ -11,33 +11,20 @@ use Illuminate\Support\Facades\Auth;
 use App\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use App\Http\Controllers\Api\Front\ColorController;
+use App\Http\Controllers\Api\Front\ImageController;
 class ProductController extends Controller
 {
-    public function getList($data)
+    public function getList($params)
 	{
-		// if($search_content == ""){
-		// 	$accs = AccFreeFire::orderBy('id', 'desc')
-		// 	->paginate($data['per_page']);
-		// }else{
-		// 	$accs = AccFreeFire::where('id','like',$search_content)
-		// 	->orWhere('username','like','%' . $search_content . '%')
-		// 	->orderBy('id', 'desc')
-		// 	->paginate($per_page);
-		// }
-
-		// $accImageController = new AccImageController;
-		// foreach ($accs as $key => $row) {
-		// 	$row->getLogin = $this->getLogin($row->login);
-		// 	$row->getLoaiNick = $this->getType($row->type);
-		// 	$row->getRank = $this->getRank($row->rank);
-        //     $row->getActive = $this->getActive($row->active);
-        //     $row->getUsed = $this->getUsed($row->used);
-		// 	$row->getStatus = $this->getStatus($row->status);
-		// 	$row->countImage = $accImageController->countImage($row->id);
-		// }
-
 		$products = Product::orderBy('id', 'desc')
-			->paginate(10);
+			->paginate(4);
+		$colorController = new ColorController;
+		$imageController = new ImageController;
+		foreach($products as $row){
+			$row->colorName = $colorController->getColorName($row->color_id);
+			$row->thumbnail = $imageController->getImage($row->thumb)->medium;
+		}
 		return $products;
 	}
 

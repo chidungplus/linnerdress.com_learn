@@ -1,17 +1,22 @@
-import Cart from './components/front/cart'
-import Payment from './components/front/payment'
-
+import Home from '@pages/Frontend/pages/Home/Home.vue';
+import ProductSingle from '@pages/Frontend/pages/Product/ProductSingle.vue';
+// import Cart from './pages/Cart/Cart';
 const routes = [
     {
-        path: '/cart',
-        component: Cart,
-        name: 'cart',
+        path: '/',
+        component: Home,
+        name: 'home',
     },
     {
-        path: '/payment',
-        component: Payment,
-        name: 'payment',
-    }
+        path: '/products/:permalink',
+        component: ProductSingle,
+        name: 'product-single',
+    },
+    // {
+    //     path: '/cart',
+    //     component: Cart,
+    //     name: 'cart',
+    // },
 ];
 
 export default routes;

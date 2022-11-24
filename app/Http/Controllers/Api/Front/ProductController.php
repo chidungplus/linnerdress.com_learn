@@ -9,5 +9,13 @@ use Log;
 
 class ProductController extends BaseProduct
 {
-
+    public function index(Request $request){
+        try{
+            $params = $request->all();
+            $products = $this->getList($params);
+            return $products;
+        }catch(\Exception $e){
+            
+        }
+    }
 }
