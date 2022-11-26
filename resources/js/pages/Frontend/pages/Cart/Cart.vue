@@ -563,6 +563,6 @@ export default {
 };
 </script>
 <style scoped>
-    @import '../assets/css/cart/ladi.css';
-    @import '../assets/css/cart/cart.css';
+    /* @import '@home/assets/css/cart/cart.css'; */
+    /* @import '@root/assets/css/cart/cart.css'; */
 </style>

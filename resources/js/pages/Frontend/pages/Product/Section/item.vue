@@ -7,7 +7,6 @@
                         name: 'product-single',
                         params: {
                             permalink: 'this-is-permalink',
-                            title: 'Váy Dạ Hội',
                         },
                     }"
                 >
@@ -33,8 +32,7 @@
                         :to="{
                             name: 'product-single',
                             params: {
-                                id: '/san-pham/permalink',
-                                title: 'Váy Dạ Hội',
+                                permalink: '/san-pham/permalink',
                             },
                         }"
                     >

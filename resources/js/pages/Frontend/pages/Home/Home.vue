@@ -9,7 +9,7 @@
 <script>
     import FooterComponent from '@pages/Frontend/layouts/partials/Footer';
     import HeaderComponent from '@pages/Frontend/layouts/partials/Header.vue';
-    import MainComponent from '@pages/Frontend/layouts/MainHome.vue';
+    import MainComponent from '@pages/Frontend/pages/Home/Section/main.vue';
     export default {
         name: 'Home',
         components: {

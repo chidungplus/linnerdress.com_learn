@@ -1,6 +1,6 @@
 import Home from '@pages/Frontend/pages/Home/Home.vue';
-import ProductSingle from '@pages/Frontend/pages/Product/ProductSingle.vue';
-// import Cart from './pages/Cart/Cart';
+import ProductSingle from '@pages/Frontend/pages/Product/Single.vue';
+import Cart from '@pages/Frontend/pages/Cart/Cart.vue';
 const routes = [
     {
         path: '/',
@@ -12,11 +12,11 @@ const routes = [
         component: ProductSingle,
         name: 'product-single',
     },
-    // {
-    //     path: '/cart',
-    //     component: Cart,
-    //     name: 'cart',
-    // },
+    {
+        path: '/cart',
+        component: Cart,
+        name: 'cart',
+    },
 ];
 
 export default routes;
