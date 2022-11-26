@@ -18,8 +18,9 @@ mix.js('resources/js/app.js', 'build/js').sourceMaps()
 mix.webpackConfig({
     resolve: {
         alias: {
-            '@root': path.resolve(__dirname, 'resources/js'),
             '@pages': path.resolve(__dirname, 'resources/js/pages'),
+            '@css': path.resolve(__dirname, 'resources/js/assets/css'),
+            '@helper': path.resolve(__dirname, 'resources/js/helper'),
         }
     }
 });

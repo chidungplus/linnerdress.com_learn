@@ -32,12 +32,12 @@
                 </div>
 
                 <div class="product-single__addtocart">
-                    <form
+                    <!-- <form
                         action=""
                         rel-script="product-single-script"
                         data-product-id=""
                         data-variants=""
-                    >
+                    > -->
                         <div class="product-single__options">
                             <div
                                 rel-script="product-single-option-item"
@@ -87,7 +87,7 @@
                             </div>
                             <div
                                 rel-script="product-single-option-item"
-                                class="product-single__option is-error"
+                                :class="`product-single__option ${isError ? 'is-error' : ''}`"
                             >
                                 <div class="option-heading">
                                     <span class="option-heading__title"
@@ -110,39 +110,17 @@
                                     data-option-index="2"
                                     class="option-select option-select--size"
                                 >
-                                    <label class="option-select__item m"
-                                        ><div class="option-select__inner">
+                                    <label class="option-select__item" v-for="(size, idx) in sizes" :key="idx">
+                                        <div class="option-select__inner">
                                             <input
                                                 type="radio"
                                                 name="size"
-                                                value="m"
-                                                data-title="M"
+                                                :value="size.key"
+                                                v-model="formData.sizeInput"
                                             />
-                                            <span class="checkmark">M</span>
-                                        </div></label
-                                    >
-                                    <label class="option-select__item l"
-                                        ><div class="option-select__inner">
-                                            <input
-                                                type="radio"
-                                                name="size"
-                                                value="l"
-                                                data-title="L"
-                                            />
-                                            <span class="checkmark">L</span>
-                                        </div></label
-                                    >
-                                    <label class="option-select__item xl"
-                                        ><div class="option-select__inner">
-                                            <input
-                                                type="radio"
-                                                name="size"
-                                                value="xl"
-                                                data-title="XL"
-                                            />
-                                            <span class="checkmark">XL</span>
-                                        </div></label
-                                    >
+                                            <span class="checkmark">{{ size.value }}</span>
+                                        </div>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -152,30 +130,30 @@
                                     rel-script="quantity-change"
                                     class="quantity"
                                 >
-                                    <a href="#" class="quantity__reduce">-</a>
+                                    <span class="quantity__reduce" @click="count('reduce')">-</span>
                                     <input
                                         type="number"
                                         value="1"
-                                        max="99"
-                                        min="1"
                                         class="quantity__control"
+                                        v-model="formData.quantity"
                                     />
-                                    <a href="#" class="quantity__augure">+</a>
+                                    <span class="quantity__augure" @click="count('augure')">+</span>
                                 </div>
                             </div>
                             <div class="product-single__button">
-                                <a
-                                    href="#"
+                                <button
                                     data-product-id="633e48dae0b15e05787570d6"
                                     data-variant-id=""
                                     data-quantity="1"
                                     rel-script="product-add-to-cart"
                                     class="btn"
-                                    >Chọn kích thước
-                                </a>
+                                    @click="onAddToCart"
+                                    >
+                                    Chọn kích thước
+                                </button>
                             </div>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
 
                 <div class="product-single__policy">
@@ -236,7 +214,42 @@
     </section>
 </template>
 <script>
-    export default {
-        name: 'SingleInfomation',
+export default {
+    name: 'SingleInfomation',
+    data() {
+        return {
+            sizes: [],
+            formData: {
+                sizeInput: "",
+                quantity: 1
+            },
+            isError: false,
+            maxQty: 10
+        }
+    },
+    created() {
+        this.setSize();
+    },
+    methods: {
+        setSize() {
+            this.sizes = [
+                { key: 'm', value: 'M' },
+                { key: 'l', value: 'L' },
+                { key: 'xl', value: 'XL' }
+            ]
+        },
+        onAddToCart() {
+            if (!this.formData.sizeInput) {
+                this.isError = true;
+            }else {
+                this.isError = false;
+            }
+        },
+        count(calculation) {
+            calculation == 'reduce' 
+                ? (this.formData.quantity > 1 ? this.formData.quantity-- : this.formData.quantity)  
+                : (this.formData.quantity < this.maxQty ? this.formData.quantity++ : this.formData.quantity);
+        }
     }
+}
 </script>
