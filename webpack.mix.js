@@ -21,6 +21,7 @@ mix.webpackConfig({
             '@pages': path.resolve(__dirname, 'resources/js/pages'),
             '@css': path.resolve(__dirname, 'resources/js/assets/css'),
             '@helper': path.resolve(__dirname, 'resources/js/helper'),
+            '@config': path.resolve(__dirname, 'resources/js/config'),
         }
     }
 });

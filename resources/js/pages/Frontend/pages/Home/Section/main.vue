@@ -22,10 +22,24 @@
 </template>
 <script>
     import ProductList from '@pages/Frontend/pages/Product/Section/list.vue';
+    import { API } from '@config/route';
     export default {
         name : 'MainHome',
         components: {
             ProductList,
+        },
+        created() {
+            this.onGetAll();
+        },
+        methods: {
+            async onGetAll() {
+                try {
+                    const { data } = await axios.get(API.HOME_INDEX);
+                    console.log(data);
+                } catch (error) {
+                    console.log(error);
+                }
+            }
         }
     }
 </script>
