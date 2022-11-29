@@ -22,9 +22,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->singleton(CoinRepositoryInterface::class, CoinRepository::class);
-        $this->app->singleton(CashCardRepositoryInterface::class, CashCardRepository::class);
+        // $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        // $this->app->singleton(UserRepositoryInterface::class, UserRepository::class);
+        // $this->app->singleton(CoinRepositoryInterface::class, CoinRepository::class);
+        // $this->app->singleton(CashCardRepositoryInterface::class, CashCardRepository::class);
   
     }
 
@@ -35,7 +36,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
+        // Schema::defaultStringLength(191);
         // config([
         //     'global' => Config::all([
         //         'name','value'
