@@ -15,16 +15,16 @@ import store from './store';
 // use router
 Vue.use(VueRouter);
 
-// Vue.filter('toCurrency', function (value) {
-//     if (typeof value !== "number") {
-//         return value;
-//     }
-//     var formatter = new Intl.NumberFormat('vi-VN', {
-//         style: 'currency',
-//         currency: 'VND'
-//     });
-//     return formatter.format(value);
-// });
+Vue.filter('toCurrency', function (value) {
+    if (typeof value !== "number") {
+        return value;
+    }
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+    return formatter.format(value);
+});
 
 // khai báo dùng router này
 const router = new VueRouter({

@@ -7,7 +7,8 @@ Route::namespace('Api')->group(function () {
 
     // });
     Route::namespace('Front')->group(function () {
-        Route::get('/products','ProductController@index');
+        Route::get('/home','HomeController@index');
+        Route::get('/product/{id}','ProductController@single');
 
         Route::post('/cart','CartController@cart');
     });

@@ -30,7 +30,7 @@ class ProductController extends BaseProduct
         $colorController = new ColorController;
         $productImageController = new ProductImageController;
         foreach($products as $row){
-            $row->color = $colorController->getNameColorId($row->color_id);
+            $row->color = $colorController->getColorName($row->color_id);
             $row->count_image = $productImageController->countImage($row->id);
         }
         $imageController = new ImageController;
