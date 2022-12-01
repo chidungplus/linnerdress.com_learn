@@ -3,17 +3,12 @@
         <div class="pro-item">
             <div class="pro-thum">
                 <router-link
-                    :to="{
-                        name: 'product-single',
-                        params: {
-                            permalink: 'this-is-permalink',
-                        },
-                    }"
+                    :to="cptRoute.WEB.PRODUCT_DETAIL(product.id, product.permalink)"
                 >
                     <img
                         width="270"
                         height="325"
-                        src="https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_450x600.jpg"
+                        :src="product.thumb.thumbnail"
                         class="
                             attachment-product-thumb
                             size-product-thumb
@@ -29,22 +24,17 @@
             <div class="pro-name">
                 <h2>
                     <router-link
-                        :to="{
-                            name: 'product-single',
-                            params: {
-                                permalink: '/san-pham/permalink',
-                            },
-                        }"
+                        :to="cptRoute.WEB.PRODUCT_DETAIL(product.id, product.permalink)"
                     >
-                        Váy Dạ Hội Dài VD185 - Trắng
+                        {{ product.name }}
                     </router-link>
                 </h2>
             </div>
             <div class="gia_mua_ban">
                 <div class="gia gia_ban">
                     <label>Giá bán:</label>
-                    <span class="gach-ngang">2,500,000đ</span>
-                    <span class="">1,489,000đ</span>
+                    <span class="gach-ngang">{{ product.cost | toCurrency }}</span>
+                    <span class="">{{ product.price | toCurrency }}</span>
                 </div>
             </div>
             <div class="pro-label"></div>
@@ -52,13 +42,19 @@
     </div>
 </template>
 <script>
+import { ROUTES } from '@config/route';
+
 export default {
+    name: "Product",
     props: {
-        keyItem: {
-            type: Number,
-            default: null,
+        product: {
+            default: () => {},
         },
     },
-    name: "Product",
+    computed: {
+        cptRoute() {
+            return ROUTES;
+        }
+    }
 };
 </script>

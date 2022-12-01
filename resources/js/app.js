@@ -11,7 +11,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import routes from './routes';
 import store from './store';
-
+import Fragment from 'vue-fragment'
+Vue.use(Fragment.Plugin)
 // use router
 Vue.use(VueRouter);
 
