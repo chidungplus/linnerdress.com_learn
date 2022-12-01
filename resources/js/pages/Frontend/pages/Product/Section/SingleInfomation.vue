@@ -5,29 +5,18 @@
                 <img
                     width="768"
                     height="1024"
-                    src="https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_768x1024.jpg"
-                    data-lazy-src="https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_768x1024.jpg"
+                    :src="product.thumb.thumbnail"
                     class="attachment-full size-full wp-post-image lazyloaded"
-                    alt=""
-                    loading="lazy"
-                    data-lazy-srcset="https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_450x600.jpg 450w, https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_768x1024.jpg 768w"
-                    data-lazy-sizes="(max-width: 768px) 100vw, 768px"
-                    sizes="(max-width: 768px) 100vw, 768px"
-                    srcset="
-                    https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_450x600.jpg  450w,
-                    https://linnerdress.com/storage/images/UiunuPmoVfGAvusjlW61UB8vL333hRTxCp1ocDxW_768x1024.jpg 768w
-                    "
-                    data-was-processed="true"
                 />
             </div>
             <div class="col-xs-12 col-sm-6 info-sp">
-                <h1 class="entry-title">Váy Dạ Hội Dài VD185 - Trắng</h1>
+                <h1 class="entry-title">{{ product.name }}</h1>
 
                 <div class="gia_mua_ban">
                     <div class="gia gia_ban">
                         <label>Giá bán:</label>
-                        <span class="gach-ngang">2,500,000đ</span>
-                        <span class="">1,489,000đ</span>
+                        <span class="gach-ngang">{{ product.cost | toCurrency }}</span>
+                        <span class="">{{ product.price | toCurrency }}</span>
                     </div>
                 </div>
 
@@ -49,7 +38,7 @@
                                         <span
                                             rel="product-option-title-color"
                                             class="text--bold"
-                                            >Tím</span
+                                            >{{ product.color.name }}</span
                                         ></span
                                     >
                                 </div>
@@ -216,6 +205,11 @@
 <script>
 export default {
     name: 'SingleInfomation',
+    props: {
+        product: {
+            default: () => {}
+        }
+    },
     data() {
         return {
             sizes: [],

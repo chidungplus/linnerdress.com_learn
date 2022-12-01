@@ -8,7 +8,7 @@ const routes = [
         name: 'home',
     },
     {
-        path: '/products/:permalink',
+        path: '/product/:permalink.:id',
         component: ProductSingle,
         name: 'product-single',
     },
