@@ -19,5 +19,10 @@ export default {
             });
         
         return listTask;
+    },
+    getCart: ({ carts }) => {
+        console.log(carts, 'getter');
+        carts = localStorage.getItem(JSON.parse('carts'));
+        return 
     }
 }

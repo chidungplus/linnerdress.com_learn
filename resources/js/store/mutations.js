@@ -23,5 +23,9 @@ export default {
     HANDLE_EDIT(state, taskEdit) {
         state.isShowForm = true;
 		state.taskSelected = taskEdit;
+    },
+    SAVE_CART(state, addCart) {
+        console.log('mut', addCart);
+		state.carts = addCart;
     }
 }

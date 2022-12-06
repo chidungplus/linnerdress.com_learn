@@ -37,4 +37,8 @@ export default {
             commit('CHANGE_TASKS', listTaskClone);
         }
     },
+    addCart({ commit }, carts) {
+        console.log(carts, 'actions');
+        commit('SAVE_CART', carts);
+    },
 }

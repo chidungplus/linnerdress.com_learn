@@ -137,7 +137,7 @@
                                     class="btn"
                                     @click="onAddToCart"
                                     >
-                                    Chọn kích thước
+                                    {{ textButton }}
                                 </button>
                             </div>
                         </div>
@@ -199,11 +199,17 @@
                 </div>
             </div>
         </div>
+        <div class="product-button-fixed">
+            <button rel-script="product-button-add-to-cart" class="btn" @click="onAddToCart">
+                {{ textButton }}
+            </button>
+        </div>
     </section>
 </template>
 <script>
 import { ASSET } from '@config/asset';
-
+import { scroll } from "@helper/Scroll";
+import { mapState } from 'vuex';
 export default {
     name: 'SingleInfomation',
     props: {
@@ -219,16 +225,30 @@ export default {
                 quantity: 1
             },
             isError: false,
-            maxQty: 10
+            maxQty: 10,
+            textButton: 'Chọn kích thước',
         }
     },
     created() {
         this.setSize();
+        scroll()
+    },
+    watch: {
+        formData: {
+            handler(newVal) {
+                if (newVal !== "") {
+                    this.textButton = `Chọn ${this.product.color.name} / ${this.formData.sizeInput}`;
+                    this.isError = false;
+                };
+            },
+            deep: true
+        }
     },
     computed: {
         cptImg() {
             return ASSET.IMG.THUMBNAIL(this.product.thumb.thumbnail);
-        }
+        },
+        ...mapState(['carts'])
     },
     methods: {
         setSize() {
@@ -241,8 +261,12 @@ export default {
         onAddToCart() {
             if (!this.formData.sizeInput) {
                 this.isError = true;
+                $('html, body').animate({
+                    scrollTop: $('.col-xs-12.col-sm-6.anh-sp').height() + $('.info-sp .entry-title').height()
+                }, 300);
             }else {
-                this.isError = false;
+                this.carts.push({...this.formData});
+                localStorage.setItem('carts', JSON.stringify(this.carts));           
             }
         },
         count(calculation) {

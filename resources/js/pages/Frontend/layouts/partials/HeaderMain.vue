@@ -79,7 +79,7 @@
                                                 alt=""
                                             />
                                         </div>
-                                        <span class="number-cart"> 0 </span>
+                                        <span class="number-cart"> {{ countCart }} </span>
                                     </router-link>
                                 </div>
                                 <div class="user">
@@ -228,7 +228,7 @@
                                         alt=""
                                     />
                                 </div>
-                                <span class="number-cart"> 0 </span>
+                                <span class="number-cart"> {{ countCart }} </span>
                             </router-link>
                         </div>
                     </div>
@@ -239,12 +239,35 @@
 </template>
 <script>
 import { ROUTES } from '@config/route';
+import { mapState } from 'vuex';
 export default {
     name : 'HeaderMain',
     computed: {
         cptRoute() {
             return ROUTES;
         },
+        ...mapState(['carts'])
+    },
+    data() {
+        return {
+            countCart: 0
+        }
+    },
+    watch: {
+        carts: {
+            handler(newVal) {
+                this.getCart();
+            },
+            deep: true
+        }
+    },
+    created() {
+        this.getCart();
+    },
+    methods: {
+        getCart() {
+            this.countCart = this.carts.length;
+        }
     }
 }
 </script>
