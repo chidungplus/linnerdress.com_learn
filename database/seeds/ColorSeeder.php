@@ -15,17 +15,34 @@ class ColorSeeder extends Seeder
         Color::truncate();
         Color::insert([
             [
-                'name' => 'blue',
+                'name' => 'Màu Trắng',
                 'sort' => '1'
             ],
             [
-                'name' => 'green',
+                'name' => 'Màu Đen',
                 'sort' => '2'
             ],
             [
-                'name' => 'red',
+                'name' => 'Màu Nude',
                 'sort' => '3'
             ],
+            [
+                'name' => 'Màu Đỏ',
+                'sort' => '4'
+            ],
+            [
+                'name' => 'Màu Xanh Lục',
+                'sort' => '5'
+            ],
+            [
+                'name' => 'Màu Xanh Dương',
+                'sort' => '6'
+            ],
+            [
+                'name' => 'Màu Xanh Than',
+                'sort' => '7'
+            ],
+
         ]);
     }
 }
