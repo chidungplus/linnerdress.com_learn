@@ -175,7 +175,7 @@
                     <div class="logo">
                         <a href="/">
                             <img
-                                src="https://fivegrains.vn/wp-content/uploads/2022/07/Logo.webp"
+                                src="/shop_assets/images/logo_linnerdress.png"
                                 alt=""
                             />
                         </a>

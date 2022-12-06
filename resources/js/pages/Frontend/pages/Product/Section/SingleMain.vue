@@ -5,7 +5,7 @@
                 id="primary"
                 class="col-xs-12 col-sm-offset-8 col-md-offset-9 content-area"
             >
-                <single-infomation :product="product" />
+                <single-infomation v-if="product" :product="product" />
                 <single-description />
                 <single-relate />
             </div>
@@ -28,7 +28,7 @@ export default {
     },
     data() {
         return {
-            product: {}
+            product: null
         }
     },
     created() {

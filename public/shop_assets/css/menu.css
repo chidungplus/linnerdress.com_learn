@@ -532,12 +532,15 @@
     #menu-main .mobile .mobile-col .logo {
         display: flex;
         align-items: center;
-        justify-content: left;
-        width: 50%
+        justify-content: center;
+        /* width: 50% */
+    }
+    .mobile .logo img{
+        width: 40px;
     }
 
     #menu-main .mobile .mobile-col .search-cart-user {
-        width: 50%;
+        /* width: 50%; */
         display: flex;
         align-items: center;
         justify-content: flex-end
