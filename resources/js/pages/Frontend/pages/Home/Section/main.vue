@@ -23,30 +23,31 @@
     </main>
 </template>
 <script>
-    import ProductList from '@pages/Frontend/pages/Product/Section/list.vue';
-    import { ROUTES } from '@config/route';
-    export default {
-        name : 'MainHome',
-        components: {
-            ProductList,
-        },
-        data() {
-            return {
-                categories: []
-            }
-        },
-        created() {
-            this.onGetAll();
-        },
-        methods: {
-            async onGetAll() {
-                try {
-                    const { data } = await axios.get(ROUTES.API.HOME_INDEX);
-                    this.categories = data?.data;
-                } catch (error) {
-                    console.log(error);
-                }
+import ProductList from '@pages/Frontend/pages/Product/Section/list.vue';
+import { ROUTES } from '@config/route';
+
+export default {
+    name : 'MainHome',
+    components: {
+        ProductList,
+    },
+    data() {
+        return {
+            categories: []
+        }
+    },
+    created() {
+        this.onGetAll();
+    },
+    methods: {
+        async onGetAll() {
+            try {
+                const { data } = await axios.get(ROUTES.API.HOME_INDEX);
+                this.categories = data?.data;
+            } catch (error) {
+                console.log(error);
             }
         }
     }
+}
 </script>

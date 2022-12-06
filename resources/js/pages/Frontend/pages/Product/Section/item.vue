@@ -8,7 +8,7 @@
                     <img
                         width="270"
                         height="325"
-                        :src="product.thumb.thumbnail"
+                        :src="cptImg"
                         class="
                             attachment-product-thumb
                             size-product-thumb
@@ -43,6 +43,7 @@
 </template>
 <script>
 import { ROUTES } from '@config/route';
+import { ASSET } from '@config/asset';
 
 export default {
     name: "Product",
@@ -54,6 +55,9 @@ export default {
     computed: {
         cptRoute() {
             return ROUTES;
+        },
+        cptImg() {
+            return ASSET.IMG.THUMBNAIL(this.product.thumb.thumbnail);
         }
     }
 };

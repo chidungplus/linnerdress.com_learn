@@ -6,12 +6,16 @@
                     <div class="header">
                         <div class="left">
                             <div class="logo">
-                                <a href="/">
+                                <router-link
+                                    :to="{ 
+                                        name: 'home', 
+                                    }"
+                                >
                                     <img
                                         src="https://linnerdress.com/shop_assets/images/logo-linner-dress.png"
                                         alt=""
                                     />
-                                </a>
+                                </router-link>
                             </div>
                             <div class="menu-active">
                                 <div class="menu-menu-main-container">
@@ -20,9 +24,14 @@
                                             id="menu-item-16"
                                             class="menu-item active"
                                         >
-                                            <a href="/" aria-current="page"
-                                                >Trang chủ</a
-                                            >
+                                        <router-link
+                                            :to="{ 
+                                                name: 'home', 
+                                            }"
+                                        >
+                                        Trang chủ
+                                        </router-link>
+
                                         </li>
                                         <li id="menu-item-17" class="menu-item">
                                             <a href="/">Váy dạ hội dài</a>
@@ -58,7 +67,12 @@
                         <div class="right">
                             <div class="search-cart-user">
                                 <div class="carts-ajax">
-                                    <a class="carts-item" href="/cart">
+                                    <router-link
+                                        :to="{ 
+                                            name: 'cart', 
+                                        }"
+                                        class="carts-item"
+                                    >
                                         <div class="img">
                                             <img
                                                 src="/shop_assets/images/svg/stroke.svg"
@@ -66,7 +80,7 @@
                                             />
                                         </div>
                                         <span class="number-cart"> 0 </span>
-                                    </a>
+                                    </router-link>
                                 </div>
                                 <div class="user">
                                     <a href="#">
@@ -95,9 +109,14 @@
                             <div class="menu-menu-main-container">
                                 <ul class="menu">
                                     <li class="menu-item active">
-                                        <a href="/" aria-current="page"
-                                            >Trang chủ</a
+                                        <router-link
+                                            :to="{ 
+                                                name: 'home', 
+                                            }"
                                         >
+                                        Trang chủ
+                                        </router-link>
+                                        
                                     </li>
                                     <li class="menu-item">
                                         <a href="/">Váy dạ hội dài</a>
@@ -173,12 +192,17 @@
                         </div>
                     </div>
                     <div class="logo">
-                        <a href="/">
+                        <router-link 
+                            :to="{ 
+                                name: 'home', 
+                            }"
+                        >
+                        
                             <img
                                 src="/shop_assets/images/logo_linnerdress.png"
                                 alt=""
                             />
-                        </a>
+                        </router-link>
                     </div>
                     <div class="search-cart-user">
                         <div class="user">
@@ -192,9 +216,11 @@
                         </div>
                         <div class="carts-ajax">
           
-                            <router-link :to="{ 
+                            <router-link 
+                                :to="{ 
                                     name: 'cart', 
-                                }" class="carts-item">
+                                }" class="carts-item"
+                            >
 
                                 <div class="img">
                                     <img
@@ -212,7 +238,13 @@
     </section>
 </template>
 <script>
-    export default {
-        name : 'HeaderMain'
+import { ROUTES } from '@config/route';
+export default {
+    name : 'HeaderMain',
+    computed: {
+        cptRoute() {
+            return ROUTES;
+        },
     }
+}
 </script>

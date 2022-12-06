@@ -5,7 +5,7 @@
                 <img
                     width="768"
                     height="1024"
-                    :src="product.thumb.thumbnail"
+                    :src="cptImg"
                     class="attachment-full size-full wp-post-image lazyloaded"
                 />
             </div>
@@ -19,7 +19,6 @@
                         <span class="">{{ product.price | toCurrency }}</span>
                     </div>
                 </div>
-
                 <div class="product-single__addtocart">
                     <!-- <form
                         action=""
@@ -203,6 +202,8 @@
     </section>
 </template>
 <script>
+import { ASSET } from '@config/asset';
+
 export default {
     name: 'SingleInfomation',
     props: {
@@ -223,6 +224,11 @@ export default {
     },
     created() {
         this.setSize();
+    },
+    computed: {
+        cptImg() {
+            return ASSET.IMG.THUMBNAIL(this.product.thumb.thumbnail);
+        }
     },
     methods: {
         setSize() {
