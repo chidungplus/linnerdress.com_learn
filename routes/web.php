@@ -13,6 +13,8 @@ Route::namespace('Auth')->group(function () {
 #Admin
 Route::middleware(['auth','admin'])->namespace('Admin')->prefix('admin')->group(function () {
     # Dash board
+    Route::get('/test', 'DashboardController@test');
+
     Route::get('/', 'DashboardController@hello');
     Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
     # Setting Config
