@@ -209,7 +209,6 @@
 <script>
 import { ASSET } from '@config/asset';
 import { scroll } from "@helper/Scroll";
-import { mapState } from 'vuex';
 export default {
     name: 'SingleInfomation',
     props: {
@@ -246,9 +245,11 @@ export default {
     },
     computed: {
         cptImg() {
-            return ASSET.IMG.THUMBNAIL(this.product.thumb.thumbnail);
+            if (this.product?.thumb) {
+                return ASSET.IMG.THUMBNAIL(this.product?.thumb?.thumbnail);
+            }
+            return '/admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
         },
-        ...mapState(['carts'])
     },
     methods: {
         setSize() {
@@ -265,8 +266,11 @@ export default {
                     scrollTop: $('.col-xs-12.col-sm-6.anh-sp').height() + $('.info-sp .entry-title').height()
                 }, 300);
             }else {
-                this.carts.push({...this.formData});
-                localStorage.setItem('carts', JSON.stringify(this.carts));           
+                const data = [];
+                data.push({...this.formData});
+                const currentCarts = JSON.parse(localStorage.getItem('carts')) || [];
+                localStorage.setItem('carts', JSON.stringify([...currentCarts, data]));           
+                this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));
             }
         },
         count(calculation) {

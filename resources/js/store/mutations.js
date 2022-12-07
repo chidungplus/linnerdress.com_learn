@@ -24,8 +24,7 @@ export default {
         state.isShowForm = true;
 		state.taskSelected = taskEdit;
     },
-    SAVE_CART(state, addCart) {
-        console.log('mut', addCart);
-		state.carts = addCart;
+    SAVE_CART(state, carts) {
+		state.carts = carts;
     }
 }

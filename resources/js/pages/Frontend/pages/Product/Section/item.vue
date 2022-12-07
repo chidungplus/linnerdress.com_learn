@@ -57,7 +57,10 @@ export default {
             return ROUTES;
         },
         cptImg() {
-            return ASSET.IMG.THUMBNAIL(this.product.thumb.thumbnail);
+            if (this.product?.thumb) {
+                return ASSET.IMG.THUMBNAIL(this.product?.thumb?.thumbnail);
+            }
+            return 'admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
         }
     }
 };

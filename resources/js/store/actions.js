@@ -38,7 +38,6 @@ export default {
         }
     },
     addCart({ commit }, carts) {
-        console.log(carts, 'actions');
         commit('SAVE_CART', carts);
     },
 }
