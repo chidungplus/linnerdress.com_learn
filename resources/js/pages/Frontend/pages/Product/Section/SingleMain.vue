@@ -1,5 +1,6 @@
 <template>
     <main class="product-single">
+        <modal-component/>
         <div id="content" class="site-content container clearfix">
             <div
                 id="primary"
@@ -18,13 +19,14 @@ import SingleInfomation from '@pages/Frontend/pages/Product/Section/SingleInfoma
 import SingleDescription from '@pages/Frontend/pages/Product/Section/SingleDescription.vue';
 import SingleRelate from '@pages/Frontend/pages/Product/Section/SingleRelate.vue';
 import { ROUTES } from '@config/route';
-// import ProductSingleSizeGuilde from './ProductSingleSizeGuilde'
+import ModalComponent from '@pages/Frontend/pages/Product/Template/Modal.vue'
 export default {
     name: 'SingleMain',
     components: {
         SingleInfomation,
         SingleDescription,
-        SingleRelate
+        SingleRelate,
+        ModalComponent
     },
     data() {
         return {
