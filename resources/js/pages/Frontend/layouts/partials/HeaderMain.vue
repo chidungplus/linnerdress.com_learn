@@ -239,14 +239,14 @@
 </template>
 <script>
 import { ROUTES } from '@config/route';
-import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 export default {
     name : 'HeaderMain',
     computed: {
         cptRoute() {
             return ROUTES;
         },
-        ...mapState(['carts'])
+        ...mapGetters(['carts'])
     },
     data() {
         return {
@@ -256,7 +256,7 @@ export default {
     watch: {
         carts: {
             handler(newVal) {
-                this.getCart();
+                this.countCart = this.carts.length;
             },
             deep: true
         }
@@ -266,7 +266,7 @@ export default {
     },
     methods: {
         getCart() {
-            this.countCart = this.carts.length;
+            this.countCart = JSON.parse(localStorage.getItem('carts')) ? JSON.parse(localStorage.getItem('carts')).length : 0;
         }
     }
 }
