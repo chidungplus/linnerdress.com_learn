@@ -221,7 +221,8 @@ export default {
             sizes: [],
             formData: {
                 sizeInput: "",
-                quantity: 1
+                quantity: 1,
+                product: this.product
             },
             isError: false,
             maxQty: 10,
