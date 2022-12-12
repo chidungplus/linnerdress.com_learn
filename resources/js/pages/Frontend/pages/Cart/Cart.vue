@@ -56,10 +56,10 @@
                                 >Sản phẩm</label
                             >
                             <div class="list-product">
-                                <div class="item-cart" v-for="(row, key) in list_carts" :key="key">
+                                <div class="item-cart" v-for="(row, index) in list_carts" :key="index">
                                     <div class="image-product">
                                         <img
-                                            src="https://w.ladicdn.com/ladiui/ladisales/no-image.svg"
+                                            :src="renderImage(row)"
                                             alt=""
                                             width="84"
                                             height="84"
@@ -67,13 +67,15 @@
                                     </div>
                                     <div class="info-product">
                                         <div class="flex-center-between w-100p">
-                                            <div class="name">{{ row.name }}</div>
+                                            <div class="name">{{ row.product.name }}</div>
                                             <img
                                                 class="cursor-pointer"
                                                 src="https://w.ladicdn.com/ladiui/ladisales/icons/icon-delete-cart.svg"
                                                 alt=""
+                                                @click="deleteCart(index)"
                                             />
                                         </div>
+                                        <div class="size">Size: {{ row.sizeInput }}</div>
                                         <div class="tooltip">
                                             <span
                                                 class="tooltiptext top"
@@ -84,7 +86,7 @@
                                         <div class="price-quantity">
                                             <div class="price-detail">
                                                 <div class="price">
-                                                    {{ row.price | toCurrency}}
+                                                    {{ row.product.price | toCurrency}}
                                                 </div>
                                             </div>
                                             <div
@@ -96,6 +98,7 @@
                                                 <div
                                                     class="btn-quantity-img"
                                                     disabled=""
+                                                    @click="changeQuantity(index, 'reduce')"
                                                 >
                                                     <img
                                                         src="https://w.ladicdn.com/ladiui/ladisales/icons/icon-subtract-quantity.svg"
@@ -106,11 +109,12 @@
                                                     type="number"
                                                     class="input-quantity"
                                                     min="1"
-                                                    value="1"
+                                                    :value="`${row.quantity}`"
                                                     style="text-align: center"
                                                     disabled
+                                                    name="quantity"
                                                 />
-                                                <div class="btn-quantity-img">
+                                                <div class="btn-quantity-img" @click="changeQuantity(index)">
                                                     <img
                                                         src="https://w.ladicdn.com/ladiui/ladisales/icons/icon-add-quantity.svg"
                                                         alt=""
@@ -180,7 +184,7 @@
                                 />
                             </div>
                             <div class="badge-cart">
-                                <div class="badge-item">{{totalItem}}</div>
+                                <div class="badge-item">{{ totalItem }}</div>
                             </div>
                         </div>
                         <div class="total-cart ta-l">
@@ -218,6 +222,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { ASSET } from '@config/asset';
 
 export default {
     data: function () {
@@ -228,41 +233,45 @@ export default {
             shipping: ['123'],
             totalItem: 0,
             totalPrice: 0,
+            maxQty: 10
         };
     },
     computed: {
-        ...mapGetters(["carts"]),
+        ...mapGetters(["carts"])
     },
     created() {
         this.getCart();
     },
-    // watch: {
-    //     carts: function(newCarts) {
-    //         var items = newCarts;
-    //         var totalItem = 0;
-    //         var totalPrice = 0;
-    //         var result = Object.keys(items).map(function(key) {
-    //             //console.log(items[key].slmua);
-    //             totalItem=totalItem + 1;  //parseInt(items[key].slmua);
-    //             totalPrice=totalPrice+parseInt(items[key].price);
-
-    //         });
-    //         this.totalItem=totalItem;
-    //         this.totalPrice=totalPrice;
-
-    //         // var tasksString = JSON.stringify(newTasks);
-    //         //     localStorage.setItem('tasks', tasksString);
-    //     },
+    watch: {
+        list_carts: {
+            handler(newCarts) {
+                if (newCarts.length) {
+                    this.totalPrice = newCarts.reduce((acc, cur) => {
+                        return acc + cur.quantity * cur?.product?.price;
+                    }, 0);
+                    this.totalItem = newCarts.reduce((acc, cur) => {
+                        return acc + cur.quantity;
+                    }, 0);
+                }
+            },
+            deep: true
+        }
        
-    // },
+    },
     methods: {
+        renderImage(cart) {
+            if (cart?.product?.thumb) {
+                return ASSET.IMG.THUMBNAIL(cart?.product?.thumb?.thumbnail);
+            }
+            return 'admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
+        },
         isActive(value) {
             if (this.tabActive == value) return true;
             else return false;
         },
         changeTabActive(value) {
             if(value != 'order'){
-                if( Object.keys(this.list_carts).length === 0 ){
+                if( this.list_carts.length === 0 ){
                     alert('Chưa có sản phẩm trong giỏ hàng.');
                     return false;
                 }
@@ -275,7 +284,7 @@ export default {
         },
         next() {
             if (this.tabActive == "order") {
-                if(Object.keys(this.list_carts).length === 0){
+                if(this.list_carts.length === 0){
                     alert('Chưa có sản phẩm trong giỏ hàng.');
                     return false;
                 }
@@ -290,7 +299,7 @@ export default {
             }
         },
         getCart() {
-            this.list_carts  = [...this.carts]
+            this.list_carts = JSON.parse(localStorage.getItem('carts'));
         },
         saveShipping() {
             alert('Save shipping success.')
@@ -305,6 +314,17 @@ export default {
             //     .catch((error) => {
             //         this.errors = error.response.data.errors.name;
             //     });
+        },
+        changeQuantity(index, calculation) {
+            calculation == 'reduce' 
+                ? (this.list_carts[index].quantity > 1 ? this.list_carts[index].quantity-- : this.list_carts[index].quantity)  
+                : (this.list_carts[index].quantity < this.maxQty ? this.list_carts[index].quantity++ : this.list_carts[index].quantity);
+        },
+        deleteCart(index) {
+            delete this.list_carts[index];
+            this.list_carts = this.list_carts.filter((cart) => cart !== null);
+            localStorage.setItem("carts", JSON.stringify([...this.list_carts]));       
+            this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));
         },
         savePayment() {
             alert('Save payment success.')
