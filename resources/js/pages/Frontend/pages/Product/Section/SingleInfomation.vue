@@ -267,8 +267,7 @@ export default {
                     scrollTop: $('.col-xs-12.col-sm-6.anh-sp').height() + $('.info-sp .entry-title').height()
                 }, 300);
             }else {
-                const data = [];
-                data.push({...this.formData});
+                const data = {...this.formData};
                 const currentCarts = JSON.parse(localStorage.getItem('carts')) || [];
                 localStorage.setItem('carts', JSON.stringify([...currentCarts, data]));           
                 this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));

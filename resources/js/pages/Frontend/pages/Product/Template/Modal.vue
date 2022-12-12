@@ -45,9 +45,9 @@ export default {
 	},
 	data() {
 		return {
-		lastCart: {},
-		product: {},
-		isActive: false,
+            lastCart: {},
+            product: {},
+            isActive: false,
 		};
 	},
 	watch: {
@@ -65,7 +65,7 @@ export default {
 	},
 	methods: {
 		isNotEmpty(obj) {
-			return Object.keys(obj).length !== 0;
+			return obj.length !== 0;
 		}
 	}
 };
