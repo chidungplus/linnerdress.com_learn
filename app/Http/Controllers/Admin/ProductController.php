@@ -3,17 +3,23 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ProductController as BaseProduct;
-
+use App\Http\Controllers\Controller;
 use Log;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
 use App\Product;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\ProductImageController;
-use App\Http\Controllers\Admin\ColorController;
-class ProductController extends BaseProduct
+use App\Repositories\Product\ProductRepository;
+
+class ProductController extends Controller
 {
+    protected $productRepo;
+
+    public function __construct(ProductRepository $productRepository)
+    {
+        $this->productRepo = $productRepository;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,21 +28,9 @@ class ProductController extends BaseProduct
     public function index(Request $request)
     {
         Auth::user()->authorizePermission('product_view');
-        $data = $request->all();
-		$products = $this->getList($data);
-        if($products === false){
-            abort(500, 'Something went wrong');
-        }
-        $colorController = new ColorController;
-        $productImageController = new ProductImageController;
-        foreach($products as $row){
-            $row->color = $colorController->getColorName($row->color_id);
-            $row->count_image = $productImageController->countImage($row->id);
-        }
-        $imageController = new ImageController;
-
-
-		return view('admin.product.index ',['products' => $products]);
+        $products = $this->productRepo->getAll();
+        
+		return view('admin.product.index', ['products' => $products]);
     }
 
     /**

@@ -1,5 +1,5 @@
 <template>
-	<fragment v-if="isNotEmpty(lastCart)">
+	<fragment v-if="isActive">
 		<div :class="`notify ${isActive ? 'is-active success' : ''}`">
 			<a class="notify__close">x</a>
 			<div class="notify__wrapper">
@@ -54,7 +54,7 @@ export default {
 		carts: {
 			handler(newVal) {
 				this.isActive = true;
-				this.lastCart = [...newVal].pop()[0];
+				this.lastCart = [...newVal].pop();
 				this.product = this.lastCart?.product
 				setTimeout(() => {
 					this.isActive = false;
@@ -63,11 +63,6 @@ export default {
 			deep: true,
 		},
 	},
-	methods: {
-		isNotEmpty(obj) {
-			return obj.length !== 0;
-		}
-	}
 };
 </script>
 

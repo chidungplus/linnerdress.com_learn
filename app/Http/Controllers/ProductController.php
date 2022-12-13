@@ -12,17 +12,15 @@ use App\Product;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 use App\Http\Controllers\Api\Front\ColorController;
-use App\Http\Controllers\Api\Front\ImageController;
+use App\Http\Controllers\ImageController;
 class ProductController extends Controller
 {
     public function getList($params)
 	{
 		$products = Product::orderBy('id', 'desc')
 			->paginate(4);
-		$colorController = new ColorController;
 		$imageController = new ImageController;
 		foreach($products as $row){
-			$row->colorName = $colorController->getColorName($row->color_id);
 			$row->thumbnail = $imageController->getImage($row->thumb)->medium;
 		}
 		return $products;
