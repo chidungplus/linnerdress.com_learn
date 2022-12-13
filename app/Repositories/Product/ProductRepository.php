@@ -14,6 +14,21 @@ class ProductRepository extends BaseRepository
     }
 
     /**
+     * Get all product by paginate
+     * 
+     * @return collection
+     */
+    public function getAll()
+    {
+        $relationship = ['productItems.color'];
+
+        return $this->model->query()
+            ->with($relationship)
+            ->orderBy('id', 'desc')
+            ->paginate(config('define.paginate.default'));
+    }
+
+    /**
      * getProductById
      */
     public function getProductById($id)

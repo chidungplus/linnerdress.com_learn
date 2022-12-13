@@ -79,7 +79,7 @@
                                                 alt=""
                                             />
                                         </div>
-                                        <span class="number-cart"> {{ countCart }} </span>
+                                        <span class="number-cart"> {{ totalItem }} </span>
                                     </router-link>
                                 </div>
                                 <div class="user">
@@ -228,7 +228,7 @@
                                         alt=""
                                     />
                                 </div>
-                                <span class="number-cart"> {{ countCart }} </span>
+                                <span class="number-cart"> {{ totalItem }} </span>
                             </router-link>
                         </div>
                     </div>
@@ -250,13 +250,21 @@ export default {
     },
     data() {
         return {
-            countCart: 0
+            totalItem: 0,
         }
     },
     watch: {
         carts: {
-            handler(newVal) {
-                this.countCart = this.carts.length;
+            // handler(newVal) {
+            //     this.countCart = this.carts.length;
+            // },
+            // deep: true
+            handler(newCarts) {
+                if (newCarts.length) {
+                    this.totalItem = newCarts.reduce((acc, cur) => {
+                        return acc + cur.quantity;
+                    }, 0);
+                }
             },
             deep: true
         }
@@ -266,7 +274,11 @@ export default {
     },
     methods: {
         getCart() {
-            this.countCart = JSON.parse(localStorage.getItem('carts')) ? JSON.parse(localStorage.getItem('carts')).length : 0;
+            if (JSON.parse(localStorage.getItem('carts'))) {
+                this.totalItem = JSON.parse(localStorage.getItem('carts')).reduce((acc, cur) => {
+                    return acc + cur.quantity;
+                }, 0);
+            }
         }
     }
 }

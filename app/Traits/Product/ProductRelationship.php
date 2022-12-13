@@ -3,6 +3,7 @@ namespace App\Traits\Product;
 use App\Color;
 use App\Image;
 use App\ProductImage;
+use App\ProductItem;
 
 trait ProductRelationship
 {
@@ -24,5 +25,9 @@ trait ProductRelationship
     public function thumb()
     {
         return $this->hasOne(Image::class, 'id', 'thumb');
+    }
+    public function productItems()
+    {
+        return $this->hasMany(ProductItem::class);
     }
 }
