@@ -95,17 +95,7 @@
                             </a>
                         </li>
                         @endif
-                        @if( Auth::user()->hasPermission('user_log_view') )
-                        <li class="nav-item">
-                            <a href="/admin/user-log" class="nav-link">
-                                <i class="nav-icon fas fa-users"></i>
-                                <p>
-                                    User Log
-                                    <span class="right badge badge-danger">New</span>
-                                </p>
-                            </a>
-                        </li>
-                        @endif
+                      
                         @if( Auth::user()->hasPermission('product_view') )
                         <li class="nav-item">
                             <a href="/admin/product" class="nav-link">
@@ -148,19 +138,10 @@
                         <li class="nav-item">
                             <a href="/admin/logs" class="nav-link">
                                 <i class="nav-icon fas fa-radiation"></i>
-                                <p class="text">System Logs</p>
+                                <p class="text">Logs</p>
                             </a>
                         </li>
                         @endif
-                        @if( Auth::user()->hasPermission('setting_view') )
-                        <li class="nav-item">
-                            <a href="/admin/setting" class="nav-link">
-                                <i class="nav-icon fas fa-radiation"></i>
-                                <p class="text">Setting</p>
-                            </a>
-                        </li>
-                        @endif
-
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

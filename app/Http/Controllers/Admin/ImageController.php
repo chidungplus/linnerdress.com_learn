@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ImageController as BaseImage;
+use App\Http\Controllers\Controller;
 
 use Intervention\Image\Facades\Image as InterventionImage;
 use Intervention\Image\Size;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Log;
 use App\Image;
-class ImageController extends BaseImage
+class ImageController extends Controller
 {
     public function thumbnail(Request $request){
         try{

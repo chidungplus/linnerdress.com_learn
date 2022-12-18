@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\ProductImageController as BaseProductImage;
+use App\Http\Controllers\Controller;
 
 use Log;
 use App\ProductImage;
-class ProductImageController extends BaseProductImage
+class ProductImageController extends Controller
 {
     public function store($product_id, $image_id){
         $productImage = ProductImage::create([

@@ -13,12 +13,4 @@ class DashboardController extends Controller
     function hello(Request $request){
     	return view ('admin.dashboard.hello');
     }
-    public function test(){
-        $images = Image::get();
-        foreach($images as $row){
-            $row->update([
-                'thumbnail' => $row->medium,
-            ]);
-        }
-    }
 }
