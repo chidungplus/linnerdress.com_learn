@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserRoleController as BaseUserRole;
+use App\Http\Controllers\Controller;
 
 use App\UserRole;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\RoleController;
-class UserRoleController extends BaseUserRole
+class UserRoleController extends Controller
 {
     public function index(){
         // show list user có quyền

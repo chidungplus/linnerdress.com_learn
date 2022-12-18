@@ -3,12 +3,19 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\RoleController as BaseRole;
+use App\Http\Controllers\Controller;
 
 use Log;
 use App\Role;
-class RoleController extends BaseRole
+class RoleController extends Controller
 {
+    public function getAll(){
+		return Role::get();
+	}
+    public function getRole($id){
+		return Role::find($id);
+	}
+    
     public function index(){
         $roles = Role::paginate(10);
         return view('admin.role.index',['roles' => $roles]);
@@ -49,10 +56,7 @@ class RoleController extends BaseRole
 	        // Auth::user()->authorizePermission('acc_ff_create');
 			$data = $request->all();
 			$dataBeauty = $this->beautyInput($data);
-            Log::debug($request);
-            Log::debug($id);
-            Log::debug($dataBeauty);
-
+    
             Role::where('id',$id)
                 ->update($dataBeauty);
 

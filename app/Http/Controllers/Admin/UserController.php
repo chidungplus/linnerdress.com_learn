@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-use App\Http\Controllers\UserController as BaseUser;
+use App\Http\Controllers\Controller;
 
 use App\User;
 use Log;
@@ -13,8 +13,17 @@ use App\Http\Controllers\Admin\UserAccFireController;
 use App\Http\Controllers\Admin\UserRandomController;
 use App\Http\Controllers\Admin\WheelController;
 use App\Http\Controllers\Admin\WithdrawController;
-class UserController extends BaseUser
+class UserController extends Controller
 {
+    public function getUser($id){
+        try{
+            return User::findOrFail($id);
+        }catch (\Exception $e) {
+            Log::error($e);
+            return false;
+        }
+    }
+    
     /**
      * return list user
      */
