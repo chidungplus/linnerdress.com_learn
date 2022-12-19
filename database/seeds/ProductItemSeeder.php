@@ -23,9 +23,10 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'price_rent' => 1000000,
                 'code' => 'DC501-Nude-XXL',
+                'name' => 'Váy dạ hội đuôi cá'
             ],
             [
-                'product_id' => 3,
+                'product_id' => 2,
                 'size' => 'XL',
                 'quantity' => 4,
                 'color_id' => 2,
@@ -33,9 +34,10 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'price_rent' => 1000000,
                 'code' => 'DC501-Nude-XXL',
+                'name' => 'Váy dạ hội đuôi cá'
             ],
             [
-                'product_id' => 4,
+                'product_id' => 2,
                 'size' => 'XXL',
                 'quantity' => 2,
                 'color_id' => 5,
@@ -43,6 +45,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'price_rent' => 1000000,
                 'code' => 'DC501-Nude-XXL',
+                'name' => 'Váy dạ hội đuôi cá'
             ],
             [
                 'product_id' => 2,
@@ -53,6 +56,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'price_rent' => 1000000,
                 'code' => 'DC501-Nude-XXL',
+                'name' => 'Váy dạ hội đuôi cá'
             ],
             [
                 'product_id' => 2,
@@ -63,6 +67,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'price_rent' => 1000000,
                 'code' => 'DC501-Nude-XXL',
+                'name' => '	Váy Dạ Hồi Dài '
             ],
         ]);
     }

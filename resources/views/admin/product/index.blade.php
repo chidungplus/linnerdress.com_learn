@@ -48,87 +48,87 @@
 								</tr>
 							</thead>
 							<tbody>
-								@foreach($products as $row)
-								<tr class="table-success">
-									<td>
-										<i
-											class="expandable-table-caret fas fa-caret-right fa-fw"></i>
-											{{$row->id}}
-									</td>
-									<td>
-										ảnh
-									</td>
-									<td>
-										{{$row->product_code}}
-									</td>
-									<td>
-										{{$row->name}}
-									</td>
-									<td>
-										<a href="" class="badge bg-danger">
-											{{number_format($row->cost)}}
-										</a>
-									</td>
-									<td>
-										<a href="" class="badge bg-success">
-											{{number_format($row->price)}}
-										</a>
-									</td>
-									<td>
-										{{rand(100,200)}}
-									</td>
-									<td class="text-primary">
-										<a href="/admin/product/{{$row->id}}/edit">
-											<i class="fas fa-edit"></i>
-										</a>
-									</td>
-									<td>
-										<a class="text-danger" onclick="destroy({{$row->id}});">
-											<i class="fas fa-trash-alt"></i>
-										</a>
-									</td>
-								</tr>
-									@for ($i = 5; $i >=1; $i--)
-									<tr class="expandable-body">
-										<td>
-											<i
-												class="expandable-table-caret fas fa-dot-circle-o fa-fw"></i>
-											1000001
-										</td>
-										<td>
-											ảnh
-										</td>
-										<td>
-											DC501-Nude-L
-										</td>
-										<td>
-											Váy dạ hội đuôi cá DC501 Nude L
-										</td>
-										<td>
-											<a href="" class="badge bg-danger">
-												921.000
-											</a>
-										</td>
-										<td>
-											<a href="" class="badge bg-success">
-												1.500.000
-											</a>
-										</td>
-										<td>
-											{{rand(10,60)}}
-										</td>
-										<td class="text-primary">
-											<a href="">
-												<i class="fas fa-edit"></i>
-											</a>
-										</td>
-										<td>
-											<a class="text-danger">
-												<i class="fas fa-trash-alt"></i>
-											</a>
-										</td>
-									</tr>
-									@endfor
+								@foreach($products as $product)
+                                    <tr class="table-success">
+                                        <td>
+                                            <i
+                                                class="expandable-table-caret fas fa-caret-right fa-fw"></i>
+                                                {{ $product->id }}
+                                        </td>
+                                        <td>
+                                            ảnh
+                                        </td>
+                                        <td>
+                                            {{ $product->product_code }}
+                                        </td>
+                                        <td>
+                                            {{ $product->name }}
+                                        </td>
+                                        <td>
+                                            <a href="" class="badge bg-danger">
+                                                {{ number_format($product->cost) }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="badge bg-success">
+                                                {{ number_format($product->price) }}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {{ rand(100,200) }}
+                                        </td>
+                                        <td class="text-primary">
+                                            <a href="/admin/product/{{$product->id}}/edit">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a class="text-danger" onclick="destroy({{ $product->id }});">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+									@foreach ($product->productItems as $productItem)
+                                        <tr class="expandable-body">
+                                            <td>
+                                                <i
+                                                    class="expandable-table-caret fas fa-dot-circle-o fa-fw"></i>
+                                                    {{ $productItem->id }}
+                                            </td>
+                                            <td>
+                                                ảnh
+                                            </td>
+                                            <td>
+                                                {{ $productItem->code }}
+                                            </td>
+                                            <td>
+                                                {{ $productItem->name }}
+                                            </td>
+                                            <td>
+                                                <a href="" class="badge bg-danger">
+                                                    {{ $productItem->cost }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="" class="badge bg-success">
+                                                    {{ $productItem->price }}
+                                                </a>
+                                            </td>
+                                            <td>
+                                                {{ $productItem->quantity }}
+                                            </td>
+                                            <td class="text-primary">
+                                                <a href="">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a class="text-danger">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                            </td>
+                                        </tr>                                        
+                                    @endforeach
 								@endforeach
 							</tbody>
 						</table>

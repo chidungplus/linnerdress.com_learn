@@ -38,7 +38,15 @@ class ProductRepository extends BaseRepository
         return $product;
     }
 
-    public function getProductByRelationship($id, $relationship = ['color', 'thumb'])
+    /**
+     * get product by relationship
+     * 
+     * @param int $id 
+     * @param array $relationship
+     * 
+     * @return collection
+     */
+    public function getProductByRelationship($id, $relationship = ['color', 'thumb', 'productItems.color'])
     {
         return $this->getProductById($id)->load($relationship);
     }

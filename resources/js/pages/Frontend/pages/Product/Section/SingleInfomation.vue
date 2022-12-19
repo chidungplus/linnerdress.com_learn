@@ -52,24 +52,20 @@
                                             option-select__item--color
                                             tim
                                         "
+                                        v-for="(color, idx) in colors"
+                                        :key="idx"
                                         ><div class="option-select__inner">
                                             <input
                                                 type="radio"
                                                 name="color"
-                                                value="tim"
-                                                checked="checked"
                                                 data-gallery=""
-                                                data-title="Tím"
+                                                :data-title="color.name"
                                             />
                                             <span
-                                                class="
-                                                    checkmark checkmark--color
-                                                    tim
-                                                "
-                                                style="
-                                                    background-image: url('https://media.coolmate.me/cdn-cgi/image/width=160,height=160,quality=80,format=auto/uploads/November2022/mau-tim-1-new.jpg');
-                                                "
-                                            ></span></div
+                                                class="checkmark checkmark--color"
+                                                v-bind:style="{ backgroundImage: 'url(' + color.image + ')' }"
+                                            ></span>
+                                        </div
                                     ></label>
                                 </div>
                             </div>
@@ -106,7 +102,7 @@
                                                 :value="size.key"
                                                 v-model="formData.sizeInput"
                                             />
-                                            <span class="checkmark">{{ size.value }}</span>
+                                            <span class="checkmark">{{ size.key.toUpperCase() }}</span>
                                         </div>
                                     </label>
                                 </div>
@@ -218,11 +214,19 @@ export default {
     },
     data() {
         return {
-            sizes: [],
+            sizes: [
+                {key: 's', value: false}, 
+                {key: 'm', value: false},
+                {key: 'l', value: false},
+                {key: 'xl', value: false},
+                {key: 'xxl', value: false},
+            ],
+            colors: [],
             formData: {
                 sizeInput: "",
                 quantity: 1,
-                product: this.product
+                product: this.product,
+                color: ""
             },
             isError: false,
             maxQty: 10,
@@ -230,7 +234,7 @@ export default {
         }
     },
     created() {
-        this.setSize();
+        this.setupData();
         scroll()
     },
     watch: {
@@ -253,11 +257,17 @@ export default {
         },
     },
     methods: {
-        setSize() {
-            this.sizes = [
-                { key: 'm', value: 'M' },
-                { key: 'l', value: 'L' },
-                { key: 'xl', value: 'XL' }
+        setupData() {
+            this.sizes.forEach(size => {
+                this.product?.product_items.forEach((productItem) => {
+                    if (size?.key === productItem?.size.toLowerCase()) {
+                        size.value = true;
+                    }
+                });
+            });
+            this.sizes = this.sizes.filter((size) => size.value === true);
+            this.colors = [ ...new Map(this.product?.product_items.map(productItem =>
+                [productItem.color['name'], productItem?.color])).values()
             ]
         },
         onAddToCart() {
