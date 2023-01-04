@@ -23,13 +23,12 @@ class HomeController extends Controller
     public function index()
     {
         $relationship = [
-            'products',
-            // 'products.color',
+            'products.productItems.gallery.images',
             // 'products.images',
-            'products.thumb',
+            // 'products.thumb',
         ];
         $categories = $this->_homeRepository->getProductByCategories($relationship);
-
+        dd($categories->toArray());
         return $categories;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 namespace App\Traits\ProductItem;
 use App\Color;
+use App\Gallery;
 use App\Image;
 use App\ProductImage;
 use App\ProductItem;
@@ -10,6 +11,11 @@ trait ProductItemRelationship
     public function color()
     {
         return $this->belongsTo(Color::class, 'color_id');
+    }
+
+    public function gallery()
+    {
+        return $this->belongsTo(Gallery::class, 'gallery_id');
     }
 
     // public function images()

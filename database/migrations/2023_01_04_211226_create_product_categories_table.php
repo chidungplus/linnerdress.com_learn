@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTabelUserLog extends Migration
+class CreateProductCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateTabelUserLog extends Migration
      */
     public function up()
     {
-        Schema::create('tabel_user_log', function (Blueprint $table) {
+        Schema::create('product_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('product_id')->nullable();
+            $table->integer('category_id')->nullable();
+            $table->integer('sort')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateTabelUserLog extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tabel_user_log');
+        Schema::dropIfExists('product_categories');
     }
 }
