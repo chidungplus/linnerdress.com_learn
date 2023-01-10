@@ -32,7 +32,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'color_id' => 1,
                 'color_avatar_id' => 8,
-                'gallery_id' => 1,
+                'gallery_id' => 2,
             ],
             [
                 'product_id' => 2,
@@ -42,7 +42,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'color_id' => 1,
                 'color_avatar_id' => 15,
-                'gallery_id' => 1,
+                'gallery_id' => 3,
             ],
             [
                 'product_id' => 2,
@@ -52,7 +52,7 @@ class ProductItemSeeder extends Seeder
                 'price' => 1000000,
                 'color_id' => 1,
                 'color_avatar_id' => 16,
-                'gallery_id' => 1,
+                'gallery_id' => 4,
             ],
         ]);
     }

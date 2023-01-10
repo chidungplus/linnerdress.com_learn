@@ -1,6 +1,6 @@
 <template>
     <div class="col-xs-6 col-sm-3 item">
-        <div class="pro-item">
+        <div class="pro-item" v-if="productItemFirst">
             <div class="pro-thum">
                 <router-link
                     :to="cptRoute.WEB.PRODUCT_DETAIL(product.id, product.permalink)"
@@ -26,15 +26,15 @@
                     <router-link
                         :to="cptRoute.WEB.PRODUCT_DETAIL(product.id, product.permalink)"
                     >
-                        {{ product.name }}
+                        {{ productItemFirst.name }}
                     </router-link>
                 </h2>
             </div>
             <div class="gia_mua_ban">
                 <div class="gia gia_ban">
                     <label>Giá bán:</label>
-                    <span class="gach-ngang">{{ product.cost | toCurrency }}</span>
-                    <span class="">{{ product.price | toCurrency }}</span>
+                    <span class="gach-ngang">{{ productItemFirst.cost | toCurrency }}</span>
+                    <span class="">{{ productItemFirst.price | toCurrency }}</span>
                 </div>
             </div>
             <div class="pro-label"></div>
@@ -47,6 +47,11 @@ import { ASSET } from '@config/asset';
 
 export default {
     name: "Product",
+    data() {
+        return {
+            productItemFirst: {}
+        }
+    },
     props: {
         product: {
             default: () => {},
@@ -57,11 +62,15 @@ export default {
             return ROUTES;
         },
         cptImg() {
-            if (this.product?.thumb) {
-                return ASSET.IMG.THUMBNAIL(this.product?.thumb?.thumbnail);
+            if (this.productItemFirst?.gallery?.images) {
+                // return ASSET.IMG.THUMBNAIL([...this.productItemFirst?.gallery?.images].shift().path);
+                return [...this.productItemFirst?.gallery?.images].shift().path;
             }
             return 'admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
-        }
+        },
+    },
+    created() {
+        this.productItemFirst = [...this.product?.product_items].shift();
     }
 };
 </script>
