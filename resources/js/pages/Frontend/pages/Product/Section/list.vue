@@ -13,14 +13,7 @@
 import Product from "@pages/Frontend/pages/Product/Section/item.vue";
 export default {
     data: function () {
-        return {
-            listProducts: [
-                '1',
-                '2',
-                '3',
-                '4'
-            ],
-        };
+        return {};
     },
     name: "ProductList",
     components: {

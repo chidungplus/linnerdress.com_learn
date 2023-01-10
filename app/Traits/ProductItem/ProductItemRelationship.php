@@ -5,12 +5,18 @@ use App\Gallery;
 use App\Image;
 use App\ProductImage;
 use App\ProductItem;
+use App\ProductItemSize;
 
 trait ProductItemRelationship
 {
     public function color()
     {
         return $this->belongsTo(Color::class, 'color_id');
+    }
+
+    public function colorAvatar()
+    {
+        return $this->belongsTo(Image::class, 'color_avatar_id');
     }
 
     public function gallery()
@@ -32,4 +38,8 @@ trait ProductItemRelationship
     // {
     //     return $this->hasOne(Image::class, 'id', 'thumb');
     // }
+    public function sizes()
+    {
+        return $this->hasMany(ProductItemSize::class, 'product_item_id', 'id');
+    }
 }

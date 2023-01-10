@@ -28,7 +28,7 @@ class HomeController extends Controller
             // 'products.thumb',
         ];
         $categories = $this->_homeRepository->getProductByCategories($relationship);
-        dd($categories->toArray());
+        
         return $categories;
     }
 }

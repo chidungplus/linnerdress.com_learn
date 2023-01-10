@@ -42,12 +42,17 @@ class ProductRepository extends BaseRepository
      * get product by relationship
      * 
      * @param int $id 
-     * @param array $relationship
      * 
      * @return collection
      */
-    public function getProductByRelationship($id, $relationship = ['color', 'thumb', 'productItems.color'])
+    public function getProductByRelationship($id)
     {
+        $relationship = [
+            'productItems.gallery.images', 
+            'productItems.colorAvatar',
+            'productItems.sizes:id,product_item_id,quantity,size',
+        ];
+
         return $this->getProductById($id)->load($relationship);
     }
 }

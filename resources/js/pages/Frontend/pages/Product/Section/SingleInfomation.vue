@@ -9,14 +9,14 @@
                     class="attachment-full size-full wp-post-image lazyloaded"
                 />
             </div>
-            <div class="col-xs-12 col-sm-6 info-sp">
-                <h1 class="entry-title">{{ product.name }}</h1>
+            <div class="col-xs-12 col-sm-6 info-sp" v-if="cptProductItemExist">
+                <h1 class="entry-title">{{ productItemSelect.name }}</h1>
 
                 <div class="gia_mua_ban">
                     <div class="gia gia_ban">
                         <label>Giá bán:</label>
-                        <span class="gach-ngang">{{ product.cost | toCurrency }}</span>
-                        <span class="">{{ product.price | toCurrency }}</span>
+                        <span class="gach-ngang">{{ productItemSelect.cost | toCurrency }}</span>
+                        <span class="">{{ productItemSelect.price | toCurrency }}</span>
                     </div>
                 </div>
                 <div class="product-single__addtocart">
@@ -34,12 +34,12 @@
                                 <div class="option-heading">
                                     <span class="option-heading__title"
                                         >Màu sắc:
-                                        <span
+                                        <!-- <span
                                             rel="product-option-title-color"
                                             class="text--bold"
                                             >{{ product.color.name }}</span
-                                        ></span
-                                    >
+                                        > -->
+                                    </span>
                                 </div>
                                 <div
                                     data-option-id="color"
@@ -50,7 +50,6 @@
                                         class="
                                             option-select__item
                                             option-select__item--color
-                                            tim
                                         "
                                         v-for="(color, idx) in colors"
                                         :key="idx"
@@ -58,12 +57,14 @@
                                             <input
                                                 type="radio"
                                                 name="color"
+                                                v-model="formData.color"
                                                 data-gallery=""
-                                                :data-title="color.name"
+                                                :value="color.product_item_id"
+                                                @change="changeColorProductItem(color.product_item_id)"
                                             />
                                             <span
                                                 class="checkmark checkmark--color"
-                                                v-bind:style="{ backgroundImage: 'url(' + color.image + ')' }"
+                                                v-bind:style="{ backgroundImage: 'url(' + color.path + ')' }"
                                             ></span>
                                         </div
                                     ></label>
@@ -99,10 +100,10 @@
                                             <input
                                                 type="radio"
                                                 name="size"
-                                                :value="size.key"
+                                                :value="size.size"
                                                 v-model="formData.sizeInput"
                                             />
-                                            <span class="checkmark">{{ size.key.toUpperCase() }}</span>
+                                            <span class="checkmark">{{ size.size }}</span>
                                         </div>
                                     </label>
                                 </div>
@@ -214,13 +215,7 @@ export default {
     },
     data() {
         return {
-            sizes: [
-                {key: 's', value: false}, 
-                {key: 'm', value: false},
-                {key: 'l', value: false},
-                {key: 'xl', value: false},
-                {key: 'xxl', value: false},
-            ],
+            sizes: [],
             colors: [],
             formData: {
                 sizeInput: "",
@@ -231,44 +226,48 @@ export default {
             isError: false,
             maxQty: 10,
             textButton: 'Chọn kích thước',
+            productItemSelect: {},
+            localProduct: {}
         }
     },
     created() {
+        scroll();
+        this.localProduct = {...this.product};
+        this.productItemSelect = [...this.localProduct?.product_items].shift();
         this.setupData();
-        scroll()
     },
-    watch: {
-        formData: {
-            handler(newVal) {
-                if (newVal !== "") {
-                    this.textButton = `Chọn ${this.product.color.name} / ${this.formData.sizeInput}`;
-                    this.isError = false;
-                };
-            },
-            deep: true
-        }
-    },
+    // watch: {
+    //     formData: {
+    //         handler(newVal) {
+    //             if (newVal !== "") {
+    //                 this.textButton = `Chọn ${this.product.color.name} / ${this.formData.sizeInput}`;
+    //                 this.isError = false;
+    //             };
+    //         },
+    //         deep: true
+    //     }
+    // },
     computed: {
         cptImg() {
-            if (this.product?.thumb) {
-                return ASSET.IMG.THUMBNAIL(this.product?.thumb?.thumbnail);
+            if (this.productItemSelect?.gallery?.images) {
+                // return ASSET.IMG.THUMBNAIL(this.product?.thumb?.thumbnail);
+                return [...this.productItemSelect?.gallery?.images].shift().path;
             }
             return '/admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
         },
+        cptProductItemExist() {
+            return Object.keys(this.productItemSelect).length > 0;
+        }
     },
     methods: {
         setupData() {
-            this.sizes.forEach(size => {
-                this.product?.product_items.forEach((productItem) => {
-                    if (size?.key === productItem?.size.toLowerCase()) {
-                        size.value = true;
-                    }
-                });
-            });
-            this.sizes = this.sizes.filter((size) => size.value === true);
-            this.colors = [ ...new Map(this.product?.product_items.map(productItem =>
-                [productItem.color['name'], productItem?.color])).values()
-            ]
+            this.colors = [...this.localProduct?.product_items.map(productItem => {
+                return {
+                    'product_item_id': productItem.id,
+                    'path': productItem?.color_avatar?.path
+                }
+            })];
+            this.sizes = this.productItemSelect?.sizes;
         },
         onAddToCart() {
             if (!this.formData.sizeInput) {
@@ -287,6 +286,10 @@ export default {
             calculation == 'reduce' 
                 ? (this.formData.quantity > 1 ? this.formData.quantity-- : this.formData.quantity)  
                 : (this.formData.quantity < this.maxQty ? this.formData.quantity++ : this.formData.quantity);
+        },
+        changeColorProductItem(id) {
+            this.productItemSelect = this.localProduct.product_items.find(productItem => productItem.id == id);
+            this.sizes = this.productItemSelect?.sizes;
         }
     }
 }
