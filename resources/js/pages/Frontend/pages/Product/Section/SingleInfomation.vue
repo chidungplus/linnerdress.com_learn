@@ -95,15 +95,16 @@
                                     data-option-index="2"
                                     class="option-select option-select--size"
                                 >
-                                    <label class="option-select__item" v-for="(size, idx) in sizes" :key="idx">
+                                    <label :class="`option-select__item ${addClassDisableSize(size)}`" v-for="(size, idx) in sizes" :key="idx">
                                         <div class="option-select__inner">
                                             <input
                                                 type="radio"
                                                 name="size"
-                                                :value="size.size"
+                                                :value="size.value"
                                                 v-model="formData.sizeInput"
+                                                @change="changeSize(size.value)"
                                             />
-                                            <span class="checkmark">{{ size.size }}</span>
+                                            <span class="checkmark">{{ size.value }}</span>
                                         </div>
                                     </label>
                                 </div>
@@ -133,7 +134,8 @@
                                     rel-script="product-add-to-cart"
                                     class="btn"
                                     @click="onAddToCart"
-                                    >
+                                    :disabled="isDisableButton"
+                                >
                                     {{ textButton }}
                                 </button>
                             </div>
@@ -220,14 +222,17 @@ export default {
             formData: {
                 sizeInput: "",
                 quantity: 1,
-                product: this.product,
-                color: ""
+                productItem: {},
+                color: "",
+                sizeId: ""
             },
             isError: false,
-            maxQty: 10,
+            maxQty: 1,
             textButton: 'Chọn kích thước',
             productItemSelect: {},
-            localProduct: {}
+            localProduct: {},
+            disableSizeClass: '',
+            isDisableButton: false
         }
     },
     created() {
@@ -236,17 +241,16 @@ export default {
         this.productItemSelect = [...this.localProduct?.product_items].shift();
         this.setupData();
     },
-    // watch: {
-    //     formData: {
-    //         handler(newVal) {
-    //             if (newVal !== "") {
-    //                 this.textButton = `Chọn ${this.product.color.name} / ${this.formData.sizeInput}`;
-    //                 this.isError = false;
-    //             };
-    //         },
-    //         deep: true
-    //     }
-    // },
+    watch: {
+        formData: {
+            handler(newVal) {
+                if (newVal.sizeInput !== "") {
+                    this.isError = false;
+                };
+            },
+            deep: true
+        }
+    },
     computed: {
         cptImg() {
             if (this.productItemSelect?.gallery?.images) {
@@ -257,6 +261,9 @@ export default {
         },
         cptProductItemExist() {
             return Object.keys(this.productItemSelect).length > 0;
+        },
+        cptDisableSizeClass() {
+            return this.disableSizeClass;
         }
     },
     methods: {
@@ -268,6 +275,7 @@ export default {
                 }
             })];
             this.sizes = this.productItemSelect?.sizes;
+            this.formData.color = [...this.colors].shift().product_item_id;
         },
         onAddToCart() {
             if (!this.formData.sizeInput) {
@@ -276,6 +284,7 @@ export default {
                     scrollTop: $('.col-xs-12.col-sm-6.anh-sp').height() + $('.info-sp .entry-title').height()
                 }, 300);
             }else {
+                this.formData.productItem = this.productItemSelect;
                 const data = {...this.formData};
                 const currentCarts = JSON.parse(localStorage.getItem('carts')) || [];
                 localStorage.setItem('carts', JSON.stringify([...currentCarts, data]));           
@@ -290,6 +299,29 @@ export default {
         changeColorProductItem(id) {
             this.productItemSelect = this.localProduct.product_items.find(productItem => productItem.id == id);
             this.sizes = this.productItemSelect?.sizes;
+            this.formData.sizeInput = '';
+            this.setTextButton('Chọn kích thước');
+        },
+        setTextButton(text) {
+            this.textButton = text;
+        },
+        addClassDisableSize(size) {
+            return size?.quantity === 0 ? 'is-disabled' : "";
+        },
+        changeSize(val) {
+            const size = this.sizes.find(size => size.value === val);
+            if (size.quantity === 0) {
+                this.setTextButton('Loại này đang hết hàng');
+                this.formData.quantity = 0;
+                this.isDisableButton = true;
+                this.maxQty = 0;
+            }else {
+                this.maxQty = size.quantity;
+                this.formData.quantity = 1;
+                this.formData.sizeId = size.id;
+                this.isDisableButton = false;
+                this.setTextButton(`Chọn ${this.productItemSelect?.color?.name} / ${this.formData.sizeInput}`)
+            }
         }
     }
 }

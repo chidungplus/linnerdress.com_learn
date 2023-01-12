@@ -91,5 +91,7 @@
         padding: 0 12px;
         white-space: nowrap;
     }
-
+    .product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after, .product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before {
+        border-radius: 12px;
+    }
 }

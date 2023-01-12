@@ -50,7 +50,7 @@ class ProductItemSeeder extends Seeder
                 'name' => 'Váy dạ hội đuôi cá DC502',
                 'cost' => 1000000,
                 'price' => 1000000,
-                'color_id' => 1,
+                'color_id' => 2,
                 'color_avatar_id' => 16,
                 'gallery_id' => 4,
             ],

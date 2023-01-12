@@ -50,7 +50,8 @@ class ProductRepository extends BaseRepository
         $relationship = [
             'productItems.gallery.images', 
             'productItems.colorAvatar',
-            'productItems.sizes:id,product_item_id,quantity,size',
+            'productItems.sizes:id,product_item_id,quantity,value',
+            'productItems.color:id,name',
         ];
 
         return $this->getProductById($id)->load($relationship);

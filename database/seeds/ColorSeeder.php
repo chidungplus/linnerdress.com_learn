@@ -15,11 +15,11 @@ class ColorSeeder extends Seeder
         Color::truncate();
         Color::insert([
             [
-                'name' => 'Màu Trắng',
+                'name' => 'Màu Đen',
                 'sort' => '1',
             ],
             [
-                'name' => 'Màu Đen',
+                'name' => 'Màu Đỏ',
                 'sort' => '2',
             ],
             [
