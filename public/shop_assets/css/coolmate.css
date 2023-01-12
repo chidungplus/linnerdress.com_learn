@@ -638,3 +638,19 @@ size-suggestion__body-size.fat span {
     background-color: hsla(0,0%,100%,0);
     color: #000;
 }
+.product-header__options .option-select__item.is-disabled .checkmark, .product-single__options .option-select__item.is-disabled .checkmark {
+    opacity: .3;
+}
+.product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before {
+    transform: rotate(45deg);
+}
+.product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after, .product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):before {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 0;
+    border-bottom: 2px dashed grey;
+}
+.product-header__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after, .product-single__options .option-select__item.is-disabled .checkmark:not(.checkmark--color):after {
+    transform: rotate(-45deg);
+}
