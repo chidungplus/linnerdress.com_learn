@@ -56,7 +56,7 @@
                                 >Sản phẩm</label
                             >
                             <div class="list-product">
-                                <div class="item-cart" v-for="(row, index) in list_carts" :key="index">
+                                <!-- <div class="item-cart" v-for="(row, index) in list_carts" :key="index">
                                     <div class="image-product">
                                         <img
                                             :src="renderImage(row)"
@@ -123,7 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
 
                                 <!-- <div class="ladiui item-product-cn">
                                     <div class="image">

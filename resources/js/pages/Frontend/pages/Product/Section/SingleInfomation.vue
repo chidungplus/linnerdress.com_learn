@@ -222,9 +222,8 @@ export default {
             formData: {
                 sizeInput: "",
                 quantity: 1,
-                productItem: {},
-                color: "",
-                sizeId: ""
+                productItemSelect: "",
+                sizeId: "",
             },
             isError: false,
             maxQty: 1,
@@ -284,10 +283,24 @@ export default {
                     scrollTop: $('.col-xs-12.col-sm-6.anh-sp').height() + $('.info-sp .entry-title').height()
                 }, 300);
             }else {
-                this.formData.productItem = this.productItemSelect;
+                this.formData.productItemSelect = this.productItemSelect;
                 const data = {...this.formData};
                 const currentCarts = JSON.parse(localStorage.getItem('carts')) || [];
-                localStorage.setItem('carts', JSON.stringify([...currentCarts, data]));           
+                if (currentCarts.length) {
+                    let flg = false;
+                    currentCarts.forEach(cart => {
+                        if (cart.sizeId === data.sizeId) {
+                            cart.quantity += data.quantity;
+                            flg = true;
+                        }
+                    });
+                    if (!flg) {
+                        currentCarts.push(data);
+                    }
+                }else {
+                    currentCarts.push(data);
+                }
+                localStorage.setItem('carts', JSON.stringify([...currentCarts]));           
                 this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));
             }
         },

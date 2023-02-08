@@ -15,7 +15,7 @@
 								{{ product.name }}
 							</span>
 							<span class="notify-product__option">
-								{{ `${product.color.name} / ${lastCart.sizeInput}` }}
+								{{ `${product.color.name} / ${sizeInput}` }}
 							</span>
 							<span class="notify-product__prices">
 								<span>{{ product.price | toCurrency }}</span>
@@ -37,8 +37,9 @@ export default {
 	computed: {
 		...mapGetters(["carts"]),
 		cptImg() {
-			if (this.lastCart?.product?.thumb) {
-				return ASSET.IMG.THUMBNAIL(this.lastCart?.product?.thumb?.thumbnail);
+			if (this.lastCart?.productItemSelect?.gallery?.images) {
+				// return ASSET.IMG.THUMBNAIL([...this.lastCart?.productItemSelect?.gallery?.images].pop().path);
+				return [...this.lastCart?.productItemSelect?.gallery?.images].pop().path;
 			}
 			return "/admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg";
 		},
@@ -47,6 +48,7 @@ export default {
 		return {
             lastCart: {},
             product: {},
+            sizeInput: "",
             isActive: false,
 		};
 	},
@@ -55,7 +57,9 @@ export default {
 			handler(newVal) {
 				this.isActive = true;
 				this.lastCart = [...newVal].pop();
-				this.product = this.lastCart?.product
+                console.log(this.lastCart);
+				this.sizeInput = this.lastCart?.sizeInput;
+				this.product = this.lastCart?.productItemSelect;
 				setTimeout(() => {
 					this.isActive = false;
 				}, 2000);
