@@ -19,7 +19,7 @@ export default {
     FooterComponent,
   },
   created() {
-    scroll();
+    // scroll();
   },
 };
 </script>

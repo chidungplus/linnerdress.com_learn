@@ -1,17 +1,17 @@
 <template>
     <header class="site-header">
-        <header-top />
+        <!-- <header-top /> -->
         <header-main />
     </header>
 </template>
 
 <script>
-    import HeaderTop from './HeaderTop';
+    // import HeaderTop from './HeaderTop';
     import HeaderMain from './HeaderMain';
     export default {
         name : 'VHeader',
         components: {
-            HeaderTop,
+            // HeaderTop,
             HeaderMain
         },
     };
