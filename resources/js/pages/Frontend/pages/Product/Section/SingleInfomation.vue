@@ -286,20 +286,8 @@ export default {
                 this.formData.productItemSelect = this.productItemSelect;
                 const data = {...this.formData};
                 const currentCarts = JSON.parse(localStorage.getItem('carts')) || [];
-                if (currentCarts.length) {
-                    let flg = false;
-                    currentCarts.forEach(cart => {
-                        if (cart.sizeId === data.sizeId) {
-                            cart.quantity += data.quantity;
-                            flg = true;
-                        }
-                    });
-                    if (!flg) {
-                        currentCarts.push(data);
-                    }
-                }else {
-                    currentCarts.push(data);
-                }
+                const existingCart = currentCarts.find(cart => cart.sizeId === data.sizeId);
+                existingCart ?  existingCart.quantity += data.quantity : currentCarts.push(data);
                 localStorage.setItem('carts', JSON.stringify([...currentCarts]));           
                 this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));
             }
