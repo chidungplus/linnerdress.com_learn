@@ -203,7 +203,34 @@
 
 <script>
 export default {
-
+    props: {
+        carts: {
+            default: () => []
+        },
+    },
+    data() {
+        return {
+            list_carts: [],
+        }
+    },
+    created() {
+        this.list_carts = [...this.carts];
+    },
+    methods: {
+        async onSaveCart() {
+            try {
+                const payload = {
+                    ...this.list_carts
+                }
+                const { data } = await axios.post(ROUTES.API.ADD_CART, payload);
+                if (data) {
+                    this.tabActive = "shipping";   
+                }   
+            } catch (error) {
+                console.log(error);
+            }
+        },
+    }
 }
 </script>
 

@@ -1,6 +1,7 @@
 const API = {
     HOME_INDEX: '/api/home',
     PRODUCT_DETAIL:(id) => `/api/product/${id}`,
+    ADD_CART: '/api/carts/add-cart',
 }
 
 const WEB = {

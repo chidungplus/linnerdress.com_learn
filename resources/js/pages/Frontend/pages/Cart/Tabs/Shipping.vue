@@ -5,9 +5,9 @@
             <span class="ladiui label-sub">Họ và tên</span>
             <input
                 class="ladiui form-control"
-                name="first_name"
+                name="name"
                 placeholder="Nhập họ và tên khách hàng"
-                value="dũng"
+                v-model="formData.name"
             />
         </div>
         <div class="pos-rel mt-16">
@@ -16,7 +16,7 @@
                 class="ladiui form-control"
                 name="phone"
                 placeholder="Nhập số điện thoại"
-                value="0965346910"
+                v-model="formData.phone"
             />
         </div>
         <div class="pos-rel mt-16">
@@ -25,7 +25,7 @@
                 class="ladiui form-control"
                 name="address"
                 placeholder="Nhập địa chỉ"
-                value="102 trần phú hà đông"
+                v-model="formData.address"
             />
         </div>
 
@@ -35,7 +35,8 @@
                 class="ladiui form-control"
                 name="note"
                 placeholder="Nhập nội dung ghi chú"
-            >d</textarea>
+                v-model="formData.note"
+            ></textarea>
             <div>
                 <span class="valid-error"></span>
             </div>
@@ -44,7 +45,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data() { 
+        return {
+            formData: {
+                name: '',
+                phone: '',
+                address: '',
+                note: '',
+            }
+        }
+    },
+    watch: {
+        formData: {
+            handler(newCarts) {
+                this.$emit('getDataShipping', this.formData);
+            },
+            deep: true
+        }
+       
+    },
+};
 </script>
 
 <style></style>

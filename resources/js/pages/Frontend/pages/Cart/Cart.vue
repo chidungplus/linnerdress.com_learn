@@ -56,7 +56,7 @@
                                 >Sản phẩm</label
                             >
                             <div class="list-product">
-                                <!-- <div class="item-cart" v-for="(row, index) in list_carts" :key="index">
+                                <div class="item-cart" v-for="(row, index) in list_carts" :key="index">
                                     <div class="image-product">
                                         <img
                                             :src="renderImage(row)"
@@ -67,7 +67,7 @@
                                     </div>
                                     <div class="info-product">
                                         <div class="flex-center-between w-100p">
-                                            <div class="name">{{ row.product.name }}</div>
+                                            <div class="name">{{ row.productItemSelect.name }}</div>
                                             <img
                                                 class="cursor-pointer"
                                                 src="https://w.ladicdn.com/ladiui/ladisales/icons/icon-delete-cart.svg"
@@ -86,7 +86,7 @@
                                         <div class="price-quantity">
                                             <div class="price-detail">
                                                 <div class="price">
-                                                    {{ row.product.price | toCurrency}}
+                                                    {{ row.productItemSelect.price | toCurrency}}
                                                 </div>
                                             </div>
                                             <div
@@ -123,38 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div> -->
-
-                                <!-- <div class="ladiui item-product-cn">
-                                    <div class="image">
-                                        <img
-                                            src="https://w.ladicdn.com/ladiui/ladisales/no-image.svg"
-                                            alt=""
-                                            width="84"
-                                            height="84"
-                                        />
-                                    </div>
-                                    <div class="info-product-item">
-                                        <div class="name">Váy Dc102</div>
-                                        <div class="description style-default">
-                                            <div>
-                                                <p>ahihi</p>
-                                            </div>
-                                        </div>
-                                        <div class="flex-center-space">
-                                            <div class="price">1,000,000đ</div>
-                                            <div
-                                                class="
-                                                    cursor-pointer
-                                                    btn-buy-product
-                                                "
-                                            >
-                                                <i class="cta-cart"></i
-                                                ><span>Đặt hàng</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -162,13 +131,15 @@
                         class="ladiui tab-pane open"
                         v-if="tabActive == 'shipping'"
                     >
-                        
+                        <shipping-component 
+                            @getDataShipping="getDataShipping"
+                        />
                     </div>
                     <div
                         class="ladiui tab-pane open"
                         v-if="tabActive == 'payment'"
                     >
-                        
+                        <payment-component />
                     </div>
                 </div>
 
@@ -223,21 +194,29 @@
 <script>
 import { mapGetters } from "vuex";
 import { ASSET } from '@config/asset';
+import { ROUTES } from '@config/route.js';
+import ShippingComponent from '@pages/Frontend/pages/Cart/Tabs/Shipping.vue';
+import PaymentComponent from '@pages/Frontend/pages/Cart/Tabs/Payment.vue';
 
 export default {
     data: function () {
         return {
             errors: [],
             tabActive: "order",
-            list_carts: [],
+            list_carts: [], 
             shipping: ['123'],
             totalItem: 0,
             totalPrice: 0,
-            maxQty: 10
+            maxQty: 10,
+            formDataShiping: {}
         };
     },
     computed: {
         ...mapGetters(["carts"])
+    },
+    components: {
+        ShippingComponent,
+        PaymentComponent
     },
     created() {
         this.getCart();
@@ -247,7 +226,7 @@ export default {
             handler(newCarts) {
                 if (newCarts.length) {
                     this.totalPrice = newCarts.reduce((acc, cur) => {
-                        return acc + cur.quantity * cur?.product?.price;
+                        return acc + cur.quantity * cur?.productItemSelect?.price;
                     }, 0);
                     this.totalItem = newCarts.reduce((acc, cur) => {
                         return acc + cur.quantity;
@@ -260,8 +239,9 @@ export default {
     },
     methods: {
         renderImage(cart) {
-            if (cart?.product?.thumb) {
-                return ASSET.IMG.THUMBNAIL(cart?.product?.thumb?.thumbnail);
+            if (cart?.productItemSelect?.gallery?.images) {
+                // return ASSET.IMG.THUMBNAIL(cart?.product?.thumb?.thumbnail);
+                return [...cart?.productItemSelect?.gallery?.images].pop().path;
             }
             return 'admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
         },
@@ -270,7 +250,7 @@ export default {
             else return false;
         },
         changeTabActive(value) {
-            if(value != 'order'){
+            if(value != 'order') {
                 if( this.list_carts.length === 0 ){
                     alert('Chưa có sản phẩm trong giỏ hàng.');
                     return false;
@@ -301,8 +281,12 @@ export default {
         getCart() {
             this.list_carts = JSON.parse(localStorage.getItem('carts'));
         },
+        getDataShipping(data) {
+            this.formDataShiping = {...data};
+        },
         saveShipping() {
             alert('Save shipping success.')
+            localStorage.setItem('shipping', JSON.stringify(this.formDataShiping));
             // let uri = `/api/cart`;
             // let test;
             // axios
@@ -331,7 +315,6 @@ export default {
         }
 
     },
-    name: "Cart",
 };
 </script>
 <style scoped>
