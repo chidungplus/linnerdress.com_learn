@@ -56,6 +56,9 @@ export default {
             }
         }
     },
+    created() {
+        this.setupData()
+    },
     watch: {
         formData: {
             handler(newCarts) {
@@ -65,6 +68,19 @@ export default {
         }
        
     },
+    methods: {
+        setupData() {
+            const shipping = JSON.parse(localStorage.getItem('shipping'));
+            if (Object.keys(shipping)) {
+                this.formData = {
+                    name: shipping.name,
+                    phone: shipping.phone,
+                    address: shipping.address,
+                    note: shipping.note,
+                }
+            }
+        }
+    }
 };
 </script>
 
