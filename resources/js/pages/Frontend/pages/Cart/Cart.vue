@@ -139,7 +139,9 @@
                         class="ladiui tab-pane open"
                         v-if="tabActive == 'payment'"
                     >
-                        <payment-component />
+                        <payment-component 
+                            @tabActive="changeTabActive"
+                        />
                     </div>
                 </div>
 
@@ -177,11 +179,11 @@
                     <div class="">
                         <div class="icon-cart cursor-pointer">Thành tiền</div>
                         <div class="total-cart ta-l">
-                            <span class="value">1,000,000đ</span>
+                            <span class="value">{{ this.totalPrice | toCurrency }}</span>
                         </div>
                     </div>
                     <div>
-                        <button class="ladiui btn btn-primary btn-sm">
+                        <button class="ladiui btn btn-primary btn-sm" @click="onSaveCart">
                             Xác nhận đặt hàng
                         </button>
                     </div>
@@ -204,7 +206,7 @@ export default {
             errors: [],
             tabActive: "order",
             list_carts: [], 
-            shipping: ['123'],
+            // shipping: {},
             totalItem: 0,
             totalPrice: 0,
             maxQty: 10,
@@ -251,11 +253,11 @@ export default {
         },
         changeTabActive(value) {
             if(value != 'order') {
-                if( this.list_carts.length === 0 ){
+                if( this.list_carts.length === 0 ) {
                     alert('Chưa có sản phẩm trong giỏ hàng.');
                     return false;
                 }
-                if(value == 'payment' && Object.keys(this.shipping).length === 0 ){
+                if(value == 'payment' && Object.keys(this.formDataShiping).length === 0 ) {
                     alert('Vui lòng nhập thông tin nhận hàng.');
                     return false;
                 }
@@ -270,7 +272,7 @@ export default {
                 }
                 this.tabActive = "shipping";
             } else if (this.tabActive == "shipping") {
-                if(Object.keys(this.shipping).length === 0){
+                if(Object.keys(this.formDataShiping).length === 0){
                     alert('Vui lòng nhập thông tin nhận hàng.');
                     return false;
                 }
@@ -285,19 +287,7 @@ export default {
             this.formDataShiping = {...data};
         },
         saveShipping() {
-            alert('Save shipping success.')
             localStorage.setItem('shipping', JSON.stringify(this.formDataShiping));
-            // let uri = `/api/cart`;
-            // let test;
-            // axios
-            //     .post(uri)
-            //     .then((response) => {
-            //         test = response.data.data;
-            //         localStorage.setItem("carts", JSON.stringify(test));
-            //     })
-            //     .catch((error) => {
-            //         this.errors = error.response.data.errors.name;
-            //     });
         },
         changeQuantity(index, calculation) {
             calculation == 'reduce' 
@@ -310,10 +300,20 @@ export default {
             localStorage.setItem("carts", JSON.stringify([...this.list_carts]));       
             this.$store.dispatch('addCart', JSON.parse(localStorage.getItem('carts')));
         },
-        savePayment() {
-            alert('Save payment success.')
-        }
-
+        async onSaveCart() {
+            try {
+                const payload = {
+                    carts: this.list_carts,
+                    shipping: this.formDataShiping
+                }
+                const { data } = await axios.post(ROUTES.API.ADD_CART, payload);
+                // if (data) {
+                //     this.tabActive = "shipping";   
+                // }   
+            } catch (error) {
+                console.log(error);
+            }
+        },
     },
 };
 </script>

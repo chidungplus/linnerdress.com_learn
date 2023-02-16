@@ -39,38 +39,36 @@
         </div>
         <div class="ladiui form-group customer-tab">
             <div class="payment-title-info">
-                <label class="ladiui checkout-title-text"
-                    >Thông tin người nhận</label
-                ><span class="ladiui link cursor-pointer mt-24"
-                    >Chỉnh sửa</span
-                >
+                <label class="ladiui checkout-title-text">
+                    Thông tin người nhận
+                </label>
+                <span class="ladiui link cursor-pointer mt-24">
+                    <button @click="changeTabActive('shipping')">Chỉnh sửa</button>
+                </span>
             </div>
             <div>
                 <div class="mb-8">
-                    <span>dũng</span><span> - 0965346910</span>
+                    <span>{{ this.shipping.name }}</span><span> - {{ this.shipping.phone }}</span>
                 </div>
                 <div>
-                    <span>grgwrw</span
-                    ><span
-                        >, Xã Vĩnh Tân, Thị xã Tân Uyên, Bình
-                        Dương</span
-                    >
+                    <span>{{ this.shipping.address }}</span>
                 </div>
             </div>
         </div>
         <div class="ladiui form-group customer-tab">
             <div class="payment-title-info">
-                <label class="ladiui checkout-title-text"
-                    >Thông tin đơn hàng</label
-                ><span class="ladiui link cursor-pointer mt-24"
-                    >Chỉnh sửa</span
-                >
+                <label class="ladiui checkout-title-text">
+                    Thông tin đơn hàng
+                </label>
+                <span class="ladiui link cursor-pointer mt-24">
+                    <button @click="changeTabActive('order')">Chỉnh sửa</button>
+                </span>
             </div>
             <div>
-                <div class="item-cart">
+                <div class="item-cart" v-for="(item, index) in list_carts" :key="index">
                     <div class="">
                         <img
-                            src="https://w.ladicdn.com/ladiui/ladisales/no-image.svg"
+                            :src="renderImage(item)"
                             alt=""
                             width="60"
                             height="60"
@@ -78,9 +76,13 @@
                     </div>
                     <div class="info-product ml-16">
                         <div class="flex-center-between w-100p">
-                            <div class="name">Váy Dc102</div>
+                            <div class="name">
+                                {{ item.productItemSelect.name }}
+                                <br>
+                                <span>Size: {{ item.sizeInput }}</span>
+                            </div>
                             <div class="payment-quantity">
-                                x 1
+                                x {{ item.quantity }}
                             </div>
                         </div>
                         <div class="payment-product-info">
@@ -93,7 +95,7 @@
                                 <div
                                     class="price m-0 text-right"
                                 >
-                                    1,000,000đ
+                                    {{ item.productItemSelect.price | toCurrency}}
                                 </div>
                             </div>
                         </div>
@@ -101,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="ladiui coupon-group">
+        <!-- <div class="ladiui coupon-group">
             <label class="checkout-title-option"
                 >Mã giảm giá</label
             >
@@ -114,15 +116,7 @@
                     Áp dụng
                 </button>
             </div>
-        </div>
-        <div class="ladiui customer-tab">
-            <div class="flex-center-between">
-                <div><span>Thành tiền</span></div>
-                <div>
-                    <span class="text-title">1,000,000đ</span>
-                </div>
-            </div>
-        </div>
+        </div> -->
         <div class="p-0-16">
             <div class="ladiui invoice">
                 <input
@@ -211,24 +205,24 @@ export default {
     data() {
         return {
             list_carts: [],
+            shipping: {},
+            totalPrice: 0
         }
     },
-    created() {
-        this.list_carts = [...this.carts];
+    async created() {
+        this.list_carts = JSON.parse(localStorage.getItem('carts'));
+        this.shipping = JSON.parse(localStorage.getItem('shipping'));
     },
     methods: {
-        async onSaveCart() {
-            try {
-                const payload = {
-                    ...this.list_carts
-                }
-                const { data } = await axios.post(ROUTES.API.ADD_CART, payload);
-                if (data) {
-                    this.tabActive = "shipping";   
-                }   
-            } catch (error) {
-                console.log(error);
+        renderImage(cart) {
+            if (cart?.productItemSelect?.gallery?.images) {
+                // return ASSET.IMG.THUMBNAIL(cart?.product?.thumb?.thumbnail);
+                return [...cart?.productItemSelect?.gallery?.images].pop().path;
             }
+            return 'admin_assets/images/lJgCRketCQAgpg3CpQiJrnMloxqLgDB36pVvc3jZ.jpeg';
+        },
+        changeTabActive(value) {
+            this.$emit('tabActive', value);      
         },
     }
 }
