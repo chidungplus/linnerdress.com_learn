@@ -1,0 +1,30 @@
+// Fonts
+@font-face {
+    font-family: 'Montserrat';
+    src: url("fonts/Montserrat.ttf") format("truetype");
+}
+$font-main: 'Montserrat', Arial,Helvetica,sans-serif;
+
+// Plugin
+@import '~bootstrap/scss/bootstrap';
+// @import '~sweetalert2/src/sweetalert2';
+@import '~toastr/toastr';
+
+// Variables
+// @import 'variables';
+
+@import 'base/base';
+@import 'components/form';
+@import 'components/table';
+@import 'components/pagination';
+@import 'components/notify';
+
+@import 'header';
+@import 'main';
+@import 'footer';
+
+@import 'pages/login';
+@import 'pages/register';
+@import 'pages/single';
+@import 'pages/charging';
+@import 'pages/cart';

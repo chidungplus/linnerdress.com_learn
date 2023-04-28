@@ -1,0 +1,48 @@
+body {
+    color: #0a2139;
+    font-size: 15px;
+    font-family: $font-main;
+    font-weight: 400;
+    font-style: normal;
+    background-color: #FDFDFD;
+}
+a, a:active, a:focus, a:hover {
+    color: #0a2139;
+    outline: none;
+    text-decoration: none;
+}
+h3 {
+    font-size: 20px;
+    color: #FE6C2A;
+    text-transform: uppercase;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+img {
+    max-width: 100%;
+    border-radius: inherit;
+}
+
+.notify {
+    position: relative;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    background: #121D29;
+    hr {
+        border-top-color: #06111e;
+    }
+}
+
+.clearfix {
+    zoom: 1;
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix:before, .clearfix:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+}
